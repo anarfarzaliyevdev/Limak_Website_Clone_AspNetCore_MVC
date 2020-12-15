@@ -1,0 +1,79 @@
+﻿@model CustomerDeclarationsViewModel
+@{
+    ViewData["Title"] = "Declarations";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles{
+    <link href="~/admin/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Country Name</th>
+                        <th>Package product type</th>
+                        <th>Price</th>
+                        <th>Track Id</th>
+                        <th>Delivery Office</th>
+                        <th>Date</th>
+                        <th>Package Note</th>
+                        <th>Store Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Country Name</th>
+                        <th>Package product type</th>
+                        <th>Price</th>
+                        <th>Track Id</th>
+                        <th>Delivery Office</th>
+                        <th>Date</th>
+                        <th>Package Note</th>
+                        <th>Store Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @if (Model.Declarations.Count > 0)
+                    {
+                        @foreach (var declaration in Model.Declarations)
+                        {
+                            <tr>
+                                <td>@declaration.CountryName</td>
+                                <td>@declaration.PackageProductType</td>
+                                <td>@declaration.Price</td>
+                                <td>@declaration.TrackId</td>
+                                <td>@declaration.DeliveryOffice</td>
+                                <td>@declaration.DayOfOrder @declaration.MonthOfOrder @declaration.YearOfOrder</td>
+                                <td>@declaration.PackageNote</td>
+                                <td>@declaration.StoreName</td>
+                                <td><a asp-action="EditDeclaration" asp-controller="Customer" asp-route-id="@declaration.Id" class="btn btn-warning text-light">Edit</a></td>
+                            </tr>
+                        }
+                    }
+
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/admin/vendor/datatables/jquery.dataTables.min.js"></script>
+
+    <script src="~/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <!-- Page level custom scripts -->
+    <script src="~/admin/js/demo/datatables-demo.js"></script>
+    <script src="~/admin/js/customJs/userIndex.js"></script>
+}
+
+

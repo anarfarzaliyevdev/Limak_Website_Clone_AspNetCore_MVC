@@ -1,0 +1,225 @@
+﻿@model AdminsAddAdminViewModel
+@{
+    ViewData["Title"] = "AddAdmin";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section Styles{
+    <link href="~/admin/css/userDetails.css" rel="stylesheet">
+}
+<div class="col-xl-12 order-xl-1">
+    <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <h3 class="mb-0">My account</h3>
+                </div>
+                <div class="col-4 text-right">
+                    <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <form asp-action="AddAdmin" method="post" asp-controller="Admins" asp-area="Admin">
+
+                <h6 class="heading-small text-muted mb-4">User information</h6>
+                <div class="pl-lg-4">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-StoreName">First Name</label>
+                                <input asp-for="FirstName"
+                                       value=""
+                                       type="text"
+                                       class="form-control inputText"
+                                       placeholder=" " />
+
+
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-StoreName">Last Name</label>
+                                <input asp-for="LastName" id="input-StoreName" class="form-control form-control-alternative" value="">
+                                <span asp-validation-for="LastName" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group focused">
+                                <label class="form-control-label" for="input-PackageProductType">Email</label>
+                                <input asp-for="Email" type="text" id="input-PackageProductType" class="form-control form-control-alternative" value="">
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <hr class="my-4">
+                <!-- Address -->
+
+                <div class="pl-lg-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group focused">
+                                <label class="form-control-label" for="input-PackageProductNumber">Phone Number</label>
+                                <input asp-for="PhoneNumber" class="form-control form-control-alternative" value="" type="text">
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group focused">
+                                <label class="form-control-label" for="input-Price">Password</label>
+                                <input asp-for="Password"
+                                       type="password"
+                                       class="form-control inputText"
+                                       placeholder=" " />
+
+
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group focused">
+                                <label class="form-control-label" for="input-Price">Confirm Password</label>
+                                <input asp-for="ConfirmPassword"
+                                       type="password"
+                                       class="form-control inputText"
+                                       placeholder=" " />
+
+
+                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group focused">
+                                <label class="form-control-label" for="input-Price">Seria Number</label>
+                                <input asp-for="SeriaNumber"
+                                       type="text"
+                                       class="form-control inputText"
+                                       placeholder=" " />
+
+
+                                <span asp-validation-for="SeriaNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="form-group focused">
+                                <label class="form-control-label" for="input-Price">CitizenShip</label>
+                                <input asp-for="CitizenShip"
+                                       type="text"
+                                       class="form-control inputText"
+                                       placeholder=" " />
+
+                                <span asp-validation-for="CitizenShip" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Day Of Birth</label>
+                                <select asp-for="@Model.DayOfBirth" class="form-control" id="exampleFormControlSelect1">
+                                    @for (int i = 1; i <= 31; i++)
+                                    {
+                                        <option>@i</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Month Of Birth</label>
+                                <select asp-for="@Model.MonthOfBirth" class="form-control" id="exampleFormControlSelect1">
+
+                                    <option>Yanvar</option>
+                                    <option>Fevral</option>
+                                    <option>Mart</option>
+                                    <option>Aprel</option>
+                                    <option>May</option>
+                                    <option>Iyun</option>
+                                    <option>Iyul</option>
+                                    <option>Avqust</option>
+                                    <option>Sentyabr</option>
+                                    <option>Oktyabr</option>
+                                    <option>Noyabr</option>
+                                    <option>Dekabr</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Year of Birth</label>
+                                <select asp-for="@Model.YearOfBirth" class="form-control" id="exampleFormControlSelect1">
+
+                                    @for (int i = (DateTime.Now.Year) - 18; i >= (DateTime.Now.Year) - 120; i--)
+                                    {
+                                       <option>@i</option>
+                                    }
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Gender</label>
+                                <select asp-for="@Model.Gender" class="form-control" id="exampleFormControlSelect1">
+
+                                    <option>Kisi</option>
+                                    <option>Qadin</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="form-group focused">
+                                <label class="form-control-label" for="input-Price">Fin Code</label>
+                                <input asp-for="@Model.FinCode"
+                                       type="text"
+                                       class="form-control inputText"
+                                       placeholder=" " />
+
+                                <span asp-validation-for="@Model.FinCode" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="form-group focused">
+                                <label class="form-control-label" for="input-Price">Id Address</label>
+                                <input asp-for="@Model.IdAddress"
+                                       type="text"
+                                       class="form-control inputText"
+                                       placeholder=" " />
+
+                                <span asp-validation-for="@Model.IdAddress" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-info" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/4.0.9/jquery.inputmask.bundle.min.js"></script>
+    <script src="~/js/inputmask.js"></script>
+<script>
+    //Phone input mask
+    $(function () {
+        $("#PhoneNumber").inputmask("(\\099\\)999-99-99", {
+
+            greedy: true,
+            showMaskOnFocus: true,
+            showMaskOnHover: false
+        });
+    })
+</script>
+}
+
+

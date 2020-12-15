@@ -1,0 +1,21 @@
+﻿.div-inline-block{
+    display:inline-block !important;
+}
+.query-div {
+    margin-bottom: 10px !important;
+    padding: 5px !important;
+
+}
+.query a {
+    color: rgb(249, 87, 50);
+    border-radius: 20px;
+    border: 1px solid;
+    padding: 5px;
+}
+.comp-query a {
+    border-radius: 20px;
+    border: 1px solid;
+    padding: 5px;
+    color: #337ab7;
+    text-decoration: none;
+}

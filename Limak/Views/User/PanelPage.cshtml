@@ -1,0 +1,166 @@
+﻿@inject SignInManager<ApplicationUser> signInManager;
+@inject UserManager<ApplicationUser> UserManager;
+@model PanelPageViewModel
+@{
+    ViewData["Title"] = "Packages";
+    Layout = "_UserPanelLayout";
+    var customerId = "";
+    var userBalanceAzn = 0m;
+    @if (signInManager.IsSignedIn(User))
+    {
+        customerId = Model.CustomerId;
+        userBalanceAzn = Model.Balance.AZN;
+    }
+}
+@section Styles{
+    <link rel="stylesheet" href="~/css/user-panel.css" />
+    <link rel="stylesheet" href="~/css/filterTable.css" />
+
+}
+<!-- User-panel-main -->
+<div id="user-panel-main" class="col-md-9 col-sm-11 col-xs-11 coin panel-right" data-content="panel-main">
+    <div class="row relative">
+
+        <div class="balance-block col-md-8 col-sm-12 col-xs-12">
+            <div class="balance">
+                <picture> <img src="~/assets/images/balans-mob.png" alt="balans" class="img-responsive"></picture> 
+                <div class="balance-count">
+                    <span>Balansım</span> <br> <span class="count">
+                        @userBalanceAzn
+                        <sup>&#x20BC</sup>
+                    </span>
+                </div> <div class="balance-date">
+                    <span>Son əlavə tarixi</span> <br> <!---->
+                </div>
+                <div class="balance-text">
+                    Azərbaycana çatdırılma haqqının ödənilməsi və online kuryer sifarişi üçün balansınızı artıra bilərsiniz.
+                    <p>
+                        <b>
+                            ARTIRILAN BALANS GERİ QAYTARILMIR.
+                        </b>
+                    </p>
+                </div> <a href="#/balance" class="">
+                    <a asp-action="AznBalance" asp-controller="User" class="border-btn btn-effect">Balansı artır</a>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-12 right-side">
+            <div class="right-top block">
+                <div>
+                    <button type="button" data-toggle="tooltip"
+                            data-placement="top" title="" data-original-title="Bu, Sizin Limak vasitəsilə son 30 gündə ölkəyə gətirdiyiniz bağlamaların məhsul dəyəri
+və çatdırılma haqqı üçün ödədiyiniz məbləğdir. Qeyd edək ki, qanunvericiliyə görə 30
+gün ərzində şəxsi istifadə üçün gətirilmiş poçt yüklərinin dəyəri və bunun üçün ödənmiş
+çatdırılma haqqı toplam 300 dolları keçdikdə gömrük rüsumu tətbiq edilir." class="pull-right">
+                        <img src="~/assets/images/question-mark.png"
+                             alt="question-mark" class="img-responsive">
+                    </button>
+                    <div class="row">
+
+                        <div class="col-xs-12">
+                            <p class="last30p">
+                                <img src="~/assets/images/wallet1.png" width="150">
+                            </p>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+    <div class="row">
+        <div class="col-xs-12 basket">
+            <div class="order-body">
+                <div class="block">
+                    <div class="coin-table">
+                        <div class="select-all">
+                            <div class="filter">
+                                <span>Filter</span>
+                                <div class="invoice-address input-group border-radius">
+                                    <div class="dropdown select-tag-container single searchable">
+                                        <div class="dropdown-toggle">
+                                            <div class="select-tag-options">
+                                                <span class="selected-tag">
+                                                    Hamısı
+                                                </span>
+
+                                            </div>
+                                            <div class="indicator-container">
+
+                                                <i class="open-indicator"></i>
+
+                                            </div>
+                                        </div>
+                                        <ul class="internal-cargo dropdown-menu deactive-dropdown" id="typeChange">
+                                            <li data-value="0">
+                                                <a>Hamısı</a>
+                                            </li>
+                                            <li data-value="1">
+                                                <a> Mədaxil</a>
+                                            </li>
+                                            <li data-value="1">
+                                                <a> Məxaric</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="right-side">
+                                <button type="button"
+                                        class="transparent " id="saveExcelBtn">
+                                    <img src="~/assets/images/excel.png" alt="excel">
+                                    <span>Excel faylda yaddaşa ver</span>
+                                </button>
+                            </div>
+                        </div>
+                    
+                        <div class="scrollable-table">
+
+
+                            <table class="table table-bordered saveExcelTable">
+                                <thead>
+                                    <tr>
+                                        <th>Əməliyyat</th>
+                                        <th>Məbləğ</th>
+                                        <th>Tarix</th>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                    @if (Model.Operations.Count > 0)
+                                    {
+                                        @foreach (var operation in Model.Operations)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @operation.Type
+                                                </td>
+                                                <td>
+                                                    @operation.Amount
+                                                </td>
+                                                <td>
+                                                    @operation.Date
+                                                </td>
+                                            </tr>
+
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+
+    <script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js">
+    </script>
+    <script src="~/js/saveExcel.js"></script>
+    <script src="~/js/filterTable.js"></script>
+}

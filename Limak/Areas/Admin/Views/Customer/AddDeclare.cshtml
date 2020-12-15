@@ -1,0 +1,200 @@
+﻿@model CustomerAddDeclarationViewModel
+@{
+    ViewData["Title"] = "AddDeclare";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section Styles{
+    <link href="~/admin/css/userDetails.css" rel="stylesheet">
+}
+<div class="col-xl-12 order-xl-1">
+    <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <h3 class="mb-0">My account</h3>
+                </div>
+                <div class="col-4 text-right">
+                    <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <form asp-action="AddDeclare" method="post" asp-controller="Customer">
+                <input asp-for="UserId" type="hidden" id="input-id" class="form-control form-control-alternative" value="@Model.UserId">
+                <h6 class="heading-small text-muted mb-4">User information</h6>
+                <div class="pl-lg-4">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group focused">
+                                <label for="exampleFormControlSelect1">Year of birth</label>
+                                <select asp-for="@Model.CountryName" class="form-control" id="country-select">
+
+                                    <option>Türkiyə</option>
+                                    <option>Amerika</option>
+
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-StoreName">Store Name</label>
+                                <input asp-for="StoreName" id="input-StoreName" class="form-control form-control-alternative" value="">
+                                <span asp-validation-for="StoreName" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group focused">
+                                <label class="form-control-label" for="input-PackageProductType">Package Product Type</label>
+                                <input asp-for="PackageProductType" type="text" id="input-PackageProductType" class="form-control form-control-alternative" value="">
+                                <span asp-validation-for="PackageProductType" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-country">Weight with kg</label>
+                                <input asp-for="Weight" step=".001" type="number" id="input-postal-code" class="form-control form-control-alternative" value="@Model.Weight">
+                                <span asp-validation-for="Weight" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="my-4">
+                <!-- Address -->
+
+                <div class="pl-lg-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group focused">
+                                <label class="form-control-label" for="input-PackageProductNumber">Package Product Number</label>
+                                <input asp-for="PackageProductNumber" min="0" id="input-PackageProductNumber" class="form-control form-control-alternative" value="" type="number">
+                                <span asp-validation-for="PackageProductNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group focused">
+                                <label class="form-control-label" for="input-Price">Price</label>
+                                <input asp-for="Price" type="number" id="input-Price" class="form-control form-control-alternative" value="">
+                                <span asp-validation-for="Price" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Order Day</label>
+
+                                <select asp-for="@Model.DayOfOrder" class="form-control">
+                                    @for (int i = 1; i <= 31; i++)
+                                    {
+                                        <option>
+                                           @i
+                                        </option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Order Month</label>
+
+                                <select asp-for="@Model.MonthOfOrder" class="form-control" >
+                                    <option data-value="Yanvar">
+                                        
+                                           Yanvar
+                                       
+                                    </option>
+                                    <option data-value="Fevral">
+                                      
+                                            Fevral
+                                       
+                                    </option>
+                                    <option data-value="Mart">
+                                        Mart
+                                        
+                                    </option>
+                                    <option data-value="Aprel">
+                                        Aprel
+                                    </option>
+                                    <option data-value="May">
+                                        May
+                                    </option>
+                                    <option data-value="İyun">
+                                       İyun
+                                    </option>
+                                    <option data-value="İyul">
+                                        İyul
+                                    </option>
+                                    <option data-value="Avqust">
+                                       Avqust
+                                    </option>
+                                    <option data-value="Sentyabr">
+                                        Sentyabr
+                                    </option>
+                                    <option data-value="Oktyabr">
+                                        Oktyabr
+                                    </option>
+                                    <option data-value="Noyabr">
+                                        Noyabr
+                                    </option>
+                                    <option data-value="Dekabr">
+                                        Dekabr
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Order Year</label>
+                                <select asp-for="@Model.YearOfOrder" class="form-control" >
+                                    @for (int i = (DateTime.Now.Year); i >= (DateTime.Now.Year)-2; i--)
+                                    {
+                                        <option data-value="@i">
+                                            @i
+                                        </option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-country">Track Id</label>
+                                <input asp-for="TrackId" type="number" id="input-postal-code" class="form-control form-control-alternative" value="">
+                                <span asp-validation-for="TrackId" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-country">Package note</label>
+                                <textarea asp-for="PackageNote" type="text" id="input-postal-code" class="form-control form-control-alternative" value="">
+
+</textarea>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Delivery office</label>
+                                <select asp-for="@Model.DeliveryOffice" class="form-control" id="exampleFormControlSelect1">
+
+                                    <option>Baki</option>
+                                    <option>Gence</option>
+                                    <option>Sumqayit</option>
+                                    <option>Zaqatala</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-info" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+

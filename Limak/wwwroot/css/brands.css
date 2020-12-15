@@ -1,0 +1,283 @@
+@font-face {
+    font-family: ProximaNova;
+    src: url(../assets/fonts/FontsFree-Net-Proxima-Nova-Thin.otf);
+}
+@font-face {
+    font-family: ProximaNovaBold;
+    src: url(../assets/fonts/FontsFree-Net-Proxima-Nova-Bold.otf);
+}
+@font-face {
+    font-family: ProximaNovaRegular;
+    src: url(../assets/fonts/FontsFree-Net-proxima_nova_reg-webfont.ttf);
+}
+@font-face {
+    font-family: ProximaNovaExtraBold;
+    src: url(../assets/fonts/FontsFree-Net-Proxima-Nova-Xbold.otf);
+}
+
+
+
+.btn-effect{
+    text-decoration: none;
+    border-radius: 3px;
+    border: 1px solid #f95732;
+    background: #f95732;
+    color: #fff;
+    display: inline-block;
+    width: 170px;
+    padding: 9px 4px;
+    font-size: 16px;
+    text-align: center;
+    transition: .2s ease-in-out
+}
+
+.btn-effect:hover {
+    background: #f57558;
+    border-color: #f57558;
+    color: #fff;
+    outline: 0;
+    text-decoration: none
+}
+
+.input-group {
+    width: 100%
+}
+
+
+
+.block button.btn.dropdown-toggle.btn-default, .bootstrap-select .dropdown-toggle .filter-option:focus, .form-control:focus {
+    outline: 0 !important;
+    border-color: #d7d7d7;
+    box-shadow: none;
+    height: 40px;
+    background: 0 0;
+    font-family: Calibri, sans-serif;
+    color: #ababab
+}
+
+.input-group .dropdown-menu li {
+    border-bottom: 1px solid #e2e5e7
+}
+
+.input-group .dropdown-menu li {
+    border-bottom: 1px solid #e2e5e7
+}
+
+
+
+.input-group .dropdown-menu li:last-child {
+    border: none
+}
+
+.input-group .form-control {
+    height: 40px;
+    font-size: 16px;
+    z-index: auto !important
+}
+
+.mobile, .mobile-xs {
+    display: none !important
+}
+
+button {
+    background: 0 0;
+    border: none
+}
+
+button:focus {
+    outline: 0
+}
+
+.breadcrumb {
+    display: inline-block;
+    background: 0 0;
+    float: right;
+    margin: 0;
+    padding: 0
+}
+
+.breadcrumb li a {
+    color: #333;
+    text-decoration: none
+}
+
+.breadcrumb li.active {
+    color: #f95732
+}
+
+.relative {
+    position: relative
+}
+
+.invoice-head, .order-head {
+    padding: 30px 0
+}
+
+.invoice-head h4, .order-head h4 {
+    font-size: 23px;
+    margin: 0;
+    text-transform: uppercase;
+    font-weight: 400
+}
+
+.news-body {
+    background-color: #fff;
+    margin-bottom: 80px
+}
+
+.brands .left-head h4:before {
+    content: '';
+    height: 4px;
+    position: absolute;
+    width: 52px;
+    left: 0;
+    background-color: #f95732;
+    bottom: -3px
+}
+
+.brands .left-head.relative{
+    padding-bottom: 1px;
+    margin-bottom: 22px
+}
+
+.news-body  {
+    width: 100%;
+    object-fit: cover
+}
+
+.brands .left-head h4 {
+    color: #f95631;
+    font-weight: 700;
+    font-size: 20px
+}
+
+.brands .left-bottom, .brands .left-top {
+    border-radius: 10px;
+    border: 1px solid #dedede;
+    padding: 24px 28px
+}
+
+.brands .brands-left a {
+    font-size: 16px;
+    color: #333;
+    text-decoration: none
+}
+
+.brands .brands-left li {
+    padding: 10px 0
+}
+
+.brands .brands-left li.active a {
+    color: #f95631;
+    border-bottom: 1px solid
+}
+
+.brands .news-body {
+    padding: 50px 0
+}
+
+.brands .left-bottom {
+    margin-top: 30px
+}
+
+.brands .brands-right h2 {
+    font-weight: 700;
+    margin: 0 0 40px
+}
+
+.brands .brands-right .right-logo {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    text-align: center;
+    height: 120px
+}
+
+.brands .brands-right a {
+    text-decoration: none;
+    color: #333
+}
+
+.brands-right .right-logo img, .brands-right .right-logo span {
+    font-weight: 700;
+    position: absolute;
+    left: 50%;
+    bottom: 50px;
+    transform: translateX(-50%);
+}
+
+.brands-right .right-logo img {
+    height: 60px;
+    object-fit: cover;
+}
+
+.brands-right .right-logo span {
+    bottom: 10px;
+    border-bottom: 1px solid transparent;
+    transition: all .2s ease-out
+}
+
+.brands .brands-right a:hover span {
+    color: #f95631;
+    border-bottom: 1px solid
+}
+
+.brands .brands-right .col-md-4 {
+    margin-bottom: 30px
+}
+
+.brands ul.dropdown-menu {
+    width: 100%
+}
+
+.brands .dropdown button {
+    width: 100%;
+    text-align: left;
+    position: relative
+}
+
+.brands .dropdown button span {
+    position: absolute;
+    right: 15px
+}
+
+.brands .about .left-bottom, .brands .about .left-top {
+    padding: 24px
+}
+
+@media only screen and (max-width: 1200px) {
+   
+    .brands .left-bottom, .brands .left-top {
+        padding: 24px 24px
+    }
+}
+
+
+@media only screen and (max-width: 767px) {
+    
+    .mobile-xs {
+        display: block !important
+    }
+
+    .web-xs {
+        display: none !important
+    }
+    .brands .brands-left li {
+        padding: 0
+    }
+
+    .brands .brands-left li.active a {
+        color: #f95631;
+        border-bottom: none;
+        background: 0 0
+    }
+
+    .brands .brands-right h2 {
+        margin: 15px 0 20px
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .brands .brands-left a {
+        font-size: 14px
+    }
+}

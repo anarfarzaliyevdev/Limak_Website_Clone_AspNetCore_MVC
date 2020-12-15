@@ -1,0 +1,193 @@
+﻿
+@{
+    ViewData["Title"] = "Packages";
+    Layout = "_UserPanelLayout";
+
+}
+@section Styles{
+    <link rel="stylesheet" href="~/css/user-panel.css" />
+
+}
+<!-- Panel Courier -->
+<div class="col-md-9 col-sm-11 col-xs-11 courier panel-right" id="panel-courier" data-content="panel-courier">
+    <div class="row">
+        <div class="col-xs-12 courier-log">
+            <div class="block col-xs-12">
+                <h2>Kuryer</h2>
+                <div class="form-list">
+                    <form action="...">
+                        <div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <h3>Ərazi seç</h3>
+                                    <div class="row">
+                                        <div class="col-md-7">
+                                            <h4>Bakı və Abşeron</h4>
+                                            <br />
+                                            <p>
+                                                <input type="radio" name="radio" id="1" value="1" />
+                                                <label for="1">
+                                                    Səbail, Yasamal, Nəsimi, Binəqədi,
+                                                    Nərimanov - 3AZN
+                                                </label>
+                                            </p>
+                                            <p>
+                                                <input type="radio" name="radio" id="2" value="2" />
+                                                <label for="2">
+                                                    Xətai, Nizami, Sabunçu, Suraxanı -
+                                                    4AZN
+                                                </label>
+                                            </p>
+                                            <p>
+                                                <input type="radio" name="radio" id="3" value="3" />
+                                                <label for="3">
+                                                    Xırdalan,Masazır,Lökbatan - 5
+                                                    AZN
+                                                </label>
+                                            </p>
+                                            <p>
+                                                <input type="radio" name="radio" id="4" value="4" />
+                                                <label for="4">
+                                                    Bakı ətrafı kənd və qəsəbələr - 5
+                                                    AZN
+                                                </label>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <h4>Regionlar</h4>
+                                            <br />
+                                            <p>
+                                                <input type="radio" name="radio" id="12" value="12" />
+                                                <label for="12">Gəncə (Şəhər daxili) - 2 AZN</label>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                    <div class="input-group border-radius">
+                                        <label>
+                                            <input type="text"
+                                                   name="region"
+                                                   placeholder=" "
+                                                   class="form-control inputText" />
+                                            <span>Rayon *</span>
+                                        </label>
+                                         
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                    <div class="input-group border-radius">
+                                        <label>
+                                            <input type="text"
+                                                   name="village"
+                                                   placeholder=" "
+                                                   class="form-control inputText" />
+                                            <span>Qəsəbə </span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                    <div class="input-group border-radius">
+                                        <label>
+                                            <input type="text"
+                                                   name="street"
+                                                   placeholder=" "
+                                                   class="form-control inputText" />
+                                            <span>Küçə *</span>
+                                        </label>
+                                         
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-5 col-xs-12">
+                                    <div class="input-group border-radius">
+                                        <label>
+                                            <input type="text"
+                                                   name="home"
+                                                   placeholder=" "
+                                                   class="form-control inputText" />
+                                            <span>Ev *</span>
+                                        </label>
+                                         
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="input-group border-radius">
+                                        <label>
+                                            <input type="number"
+                                                   name="tel"
+                                                   placeholder=" "
+                                                   class="form-control inputText" />
+                                            <span>Telefon *</span>
+                                        </label>
+                                         
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <label>
+                                        Kuryer sifariş etmək üçün bağlamanız
+                                        yoxdur
+                                    </label>
+                                    <div class="input-group border-radius">
+                                        <ul class="select-outer">
+                                            <li class="package-menu-courier-item package-menu-courier form-control">
+                                                <p class="">
+                                                    <span> Bağlamanı seçin</span>
+                                                </p>
+                                                <ul class="dropdown-menu">
+                                                    <li class="select-item">
+                                                        <label class="check-button">
+                                                            <span class="check-text">Hamısı</span>
+                                                            <input type="checkbox" />
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                             
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="textarea-form form-group">
+                                        <textarea rows="4"
+                                                  id="comment"
+                                                  placeholder="Əlavə qeydlərinizi yazın"
+                                                  class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 button-part">
+                                    <button type="submit" class="btn-effect">
+                                        Təsdiq et
+                                    </button>
+                                </div>
+                                <div class="col-xs-12">
+                                    <br />
+                                    <p>
+                                        <b>
+                                            <span>
+                                                Kuryer sifarişiniz 24 saat ərzində təyin
+                                                olunur.
+                                            </span>
+                                        </b>
+                                    </p>
+                                    <p>
+                                        <b>
+                                            <span>
+                                                Kuryerin iş saatları 10:00 - 19:00
+                                                (həftənin 6 günü).
+                                            </span>
+                                        </b>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

@@ -1,0 +1,102 @@
+﻿@model AdminIndexViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles{
+    <link href="~/admin/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+    </div>
+
+    <div class="card-body">
+        <a asp-action="AddAdmin" asp-controller="Admins" asp-area="Admin" class="btn btn-success text-light">Add new admin</a>
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>First name</th>
+                        <th>Last name</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>First name</th>
+                        <th>Last name</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @if (Model.Admins.Count > 0)
+                    {
+                        @foreach (var user in Model.Admins)
+                        {
+                            <tr>
+                                <td>@user.FirstName</td>
+                                <td>@user.LastName</td>
+                                <td>@user.Email</td>
+                                <td>
+                                    @*<a asp-action="Details" asp-controller="Customer" asp-route-id="@user.Id" class="btn btn-info text-light">Details</a>*@
+                                    @*<a asp-action="Orders" asp-controller="Customer" asp-route-id="@user.Id" class="btn btn-success text-light">Show orders</a>
+                                    <a asp-action="Declarations" asp-controller="Customer" asp-route-id="@user.Id" class="btn btn-success text-light">Show declares</a>*@
+                                    <a asp-action="EditAdmin" asp-controller="Admins" asp-route-id="@user.Id" class="btn btn-warning text-light">Edit</a>
+                                    @if (user.Id!=Model.CurrentUserId)
+                                    {
+                                    <a id="rowDataDeleteBtn" class="btn btn-danger text-light" data-toggle="modal" data-target="#exampleModal" data-id="@user.Id">Delete</a>
+
+                                    }
+                                    @*<a asp-action="AddDeclare" asp-controller="Customer" asp-route-id="@user.Id" class="btn btn-success text-light">Add declare</a>*@
+                                </td>
+
+                            </tr>
+                        }
+                    }
+
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!--Delete Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-danger" id="exampleModalLabel">Warning</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure to delete ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button id="modalDeleteBtn" type="button" class="btn btn-danger" data-id="0">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/admin/vendor/datatables/jquery.dataTables.min.js"></script>
+
+    <script src="~/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <!-- Page level custom scripts -->
+    <script src="~/admin/js/demo/datatables-demo.js"></script>
+    <script src="~/admin/js/customJs/customerIndex.js"></script>
+    <script src="~/admin/js/customJs/deleteAdminPost.js"></script>
+}

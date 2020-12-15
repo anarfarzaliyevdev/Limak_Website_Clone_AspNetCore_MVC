@@ -1,0 +1,692 @@
+﻿@inject SignInManager<ApplicationUser> signInManager;
+@inject UserManager<ApplicationUser> UserManager
+@{
+    ViewData["Title"] = "Packages";
+    var customerId = "";
+    @if (signInManager.IsSignedIn(User))
+    {
+        customerId = UserManager.FindByNameAsync(User.Identity.Name).Result.CustomerId;
+    }
+}
+@section Styles{
+    <link rel="stylesheet" href="~/css/user-panel.css" />
+    <link rel="stylesheet" href="~/css/declare.css" />
+}
+<section class="invoice content num-spin">
+    <div class="container">
+        <div class="row">
+            <div class="invoice-head col-xs-12">
+                <div class="col-md-4 col-sm-5 col-xs-6">
+                    <h4>
+                        BƏYANNAMƏ <b>YÜKLƏ</b>
+                    </h4>
+                </div>
+                <div class="col-md-8 col-sm-7 col-xs-6">
+                    <ol class="breadcrumb web">
+                        <li>
+                            <a href="/">Ana səhifə </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                İstifadəçi paneli
+                            </a>
+                        </li>
+                        <li class="active">Bəyan et</li>
+                    </ol>
+                    <ol class="breadcrumb mobile">
+                        <li>
+                            <a href="/">... </a>
+                        </li>
+                        <li class="active">Bəyan et</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="invoice-body col-xs-12">
+                <div class="row relative">
+
+                    <div class="col-md-9 col-sm-12 col-xs-12">
+                        <div class="row col-xs-12 order-body">
+                            <div class="block">
+                                <ul class="nav nav-tabs country">
+                                    <li class="  active">
+                                        <a href="#turkey"
+                                           data-toggle="tab"
+                                           class="order-img1">
+                                            Türkiyə
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#usa"
+                                           data-toggle="tab"
+                                           class="order-img2">
+                                            Amerika
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="invoice-left-side block">
+                            <div id="tabContent"
+                                 class="left-content trBg">
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active" id="turkey">
+                                        <div class="row">
+                                            <div class="col-md-7 col-sm-7 col-xs-6">
+                                                <div class="input-group border-radius">
+                                                    <label>
+                                                        <input type="text"
+                                                               name="length"
+                                                               placeholder=" "
+                                                               class="form-control inputText" id="storename" />
+                                                        <span>Mağaza adı * </span>
+
+                                                    </label>
+                                                    <p class="add-storename alert alertptag">Mağaza adını qeyd edin</p>
+                                                     
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5 col-sm-5 col-xs-6">
+                                                <div class="input-group border-radius">
+                                                    <label>
+                                                        <input type="text"
+                                                               name="length"
+                                                               placeholder=" "
+                                                               class="form-control inputText" id="producttype" />
+                                                        <span>
+                                                            Bağlamadakı məhsulun növü *
+                                                        </span>
+                                                        <p class="add-packagetype alert alertptag ">Məhsul növünü qeyd edin</p>
+                                                    </label>
+                                                     
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <div class="ch-input-1 input-group input-group-container">
+                                                    <span class="input-group-prepend">
+                                                        <button type="button"
+                                                                id=""
+                                                                class="btn btn-default btn-decrease-pack">
+                                                            <strong>-</strong>
+                                                        </button>
+                                                    </span>
+                                                    <input id="productnumber"
+                                                           placeholder="Bağlamadakı məhsulun sayı"
+                                                           type="number"
+                                                           value=""
+                                                           min="1"
+                                                           class="form-control text-center package-count" />
+                                                    <span class="input-group-append">
+                                                        <button type="button"
+                                                                id=""
+                                                                class="btn btn-default btn-increase-pack">
+                                                            <strong>+</strong>
+                                                        </button>
+                                                    </span>
+                                                    <p class="add-packagecount alert alertptag ">Məhsul sayını qeyd edin</p>
+                                                     
+                                                </div>
+                                                <div class="ch-input-2 input-group border-radius">
+                                                    <label>
+                                                        <input type="number"
+                                                               name="length"
+                                                               placeholder=" "
+                                                               class="form-control inputText" id="price" />
+                                                        <span>
+                                                            Qiyməti (tl) *
+                                                        </span>
+                                                        <p class="add-packageprice alert alertptag">Məhsulun qiymətini qeyd edin</p>
+                                                    </label>
+                                                     
+                                                </div>
+                                                <div class="ch-input-2 input-group border-radius">
+                                                    <label>
+                                                        <input type="number"
+                                                               name="length"
+                                                               placeholder=" "
+                                                               class="form-control inputText" id="trackid" />
+                                                        <span>
+                                                            Sifarişin İzləmə kodu *
+                                                        </span>
+                                                        <p class="add-trackid alert alertptag">Sifarişin izləmə kodunu qeyd edin</p>
+                                                    </label>
+                                                     
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4 col-xs-12">
+                                                <h5>Çatdırılma ofisi*</h5>
+                                                <div class="invoice-address input-group border-radius">
+                                                     
+                                                    <div  
+                                                         class="dropdown select-tag-container single searchable">
+                                                        <div class="dropdown-toggle">
+                                                            <div class="select-tag-options">
+                                                                <span class="selected-tag" id="deliveryoffice">Baki</span>
+                                                               
+                                                            </div>
+                                                            <div class="indicator-container">
+                                                               
+                                                                <i class="open-indicator"></i>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a>Baki</a></li>
+                                                            <li class=""><a>Gence</a></li>
+                                                            <li class=""><a>Sumqayit</a></li>
+                                                        </ul>
+                                                         
+                                                    </div>
+                                                     
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8 col-xs-12 date-container">
+                                                <h5>Sifarişin verilmə tarixi *</h5>
+                                                <div class="invoice-day input-group border-radius">
+                                                    <div  
+                                                         class="dropdown select-tag-container single searchable">
+                                                        <div class="dropdown-toggle">
+                                                            <div class="select-tag-options">
+                                                                <span class="selected-tag" id="dayoforder1">
+                                                                    1
+                                                                     
+                                                                </span>
+                                                                
+                                                            </div>
+                                                            <div class="indicator-container">
+                                                               
+                                                                <i class="open-indicator"></i>
+                                                              
+                                                            </div>
+                                                        </div>
+                                                        <ul class="dropdown-menu list-scroll day-scroll-list" id="month-day">
+                                                            @for (int i = 1; i <= 31; i++)
+                                                            {
+                                                                <li>
+                                                                    <a data-value="@i">
+                                                                        <span class="text">@i</span>
+                                                                    </a>
+                                                                </li>
+                                                            }
+                                                        </ul>
+                                                         
+                                                    </div>
+                                                </div>
+                                                <div class="invoice-month input-group border-radius">
+                                                    <div  
+                                                         class="dropdown select-tag-container single searchable">
+                                                        <div class="dropdown-toggle">
+                                                            <div class="select-tag-options">
+                                                                <span class="selected-tag" id="monthoforder1">
+                                                                    Yanvar
+
+                                                                </span>
+                                                               
+                                                            </div>
+                                                            <div class="indicator-container">
+                                                               
+                                                                <i class="open-indicator"></i>
+                                                               
+                                                            </div>
+                                                        </div>
+                                                        <ul class="dropdown-menu list-scroll month-scroll-list">
+                                                            <li>
+                                                                <a data-value="Yanvar">
+                                                                    <span class="text">Yanvar</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a data-value="Fevral">
+                                                                    <span class="text">Fevral</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a data-value="Mart">
+                                                                    <span class="text">Mart</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a data-value="Aprel">
+                                                                    <span class="text">Aprel</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a data-value="May">
+                                                                    <span class="text">May</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a data-value="İyun">
+                                                                    <span class="text">İyun</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a data-value="İyul">
+                                                                    <span class="text">İyul</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a data-value="Avqust">
+                                                                    <span class="text">Avqust</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a data-value="Sentyabr">
+                                                                    <span class="text">Sentyabr</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a data-value="Oktyabr">
+                                                                    <span class="text">Oktyabr</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a data-value="Noyabr">
+                                                                    <span class="text">Noyabr</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a data-value="Dekabr">
+                                                                    <span class="text">Dekabr</span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                         
+                                                    </div>
+                                                </div>
+                                                <div class="invoice-year input-group border-radius">
+                                                    <div  
+                                                         class="dropdown select-tag-container single searchable">
+                                                        <div class="dropdown-toggle">
+                                                            <div class="select-tag-options">
+                                                                <span class="selected-tag" id="yearoforder1">
+                                                                    2020
+                                                                     
+                                                                </span>
+                                                                
+                                                            </div>
+                                                            <div class="indicator-container">
+                                                               
+                                                                <i class="open-indicator"></i>
+                                                              
+                                                            </div>
+                                                        </div>
+                                                        <ul class="dropdown-menu year-scroll-list">
+                                                            <li>
+                                                                <a data-value="2020">
+                                                                    <span class="text">2020</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a data-value="2019">
+                                                                    <span class="text">2019</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a data-value="2018">
+                                                                    <span class="text">2018</span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                         
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <div class="textarea-form form-group">
+                                                    <textarea rows="4"
+                                                              id="comment"
+                                                              placeholder="Bağlamanıza aid qeydləriniz varsa yazın"
+                                                              class="form-control"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="btn-part text-left">
+                                                    <label for="file"
+                                                           class="invoice-upload">
+                                                        <span>İnvoys yüklə</span>
+                                                        <input refs="file"
+                                                               type="file"
+                                                               id="file"
+                                                               name="invoice"
+                                                               class="form-control-file" />
+                                                    </label>
+                                                    <button class="btn-effect" id="declarebtn">
+                                                        <span>Göndər</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="tab-pane" id="usa">
+                                        <div class="row">
+                                            <div class="col-md-7 col-sm-7 col-xs-6">
+                                                <div class="input-group border-radius">
+                                                    <label>
+                                                        <input type="text"
+                                                               name="length"
+                                                               placeholder=" "
+                                                               class="form-control inputText" id="storename2" />
+                                                        <span>Mağaza adı * </span>
+                                                    </label>
+                                                    <p class="add-storename2 alert alertptag">Mağaza adını qeyd edin</p>
+                                                     
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5 col-sm-5 col-xs-6">
+                                                <div class="input-group border-radius">
+                                                    <label>
+                                                        <input type="text"
+                                                               name="length"
+                                                               placeholder=" "
+                                                               class="form-control inputText" id="producttype2" />
+                                                        <span>
+                                                            Bağlamadakı məhsulun növü *
+                                                        </span>
+                                                        <p class="add-packagetype2 alert alertptag ">Məhsul növünü qeyd edin</p>
+                                                    </label>
+                                                     
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <div class="ch-input-1 input-group input-group-container">
+                                                    <span class="input-group-prepend">
+                                                        <button type="button"
+                                                                id=""
+                                                                class="btn btn-default btn-decrease-pack">
+                                                            <strong>-</strong>
+                                                        </button>
+                                                    </span>
+                                                    <input id="productnumber2"
+                                                           placeholder="Bağlamadakı məhsulun sayı"
+                                                           type="number"
+                                                           value=""
+                                                           min="1"
+                                                           class="form-control text-center package-count" />
+                                                    <span class="input-group-append">
+                                                        <button type="button"
+                                                                id=""
+                                                                class="btn btn-default btn-increase-pack">
+                                                            <strong>+</strong>
+                                                        </button>
+                                                    </span>
+                                                    <p class="add-packagecount2 alert alertptag ">Məhsul sayını qeyd edin</p>
+                                                     
+                                                </div>
+                                                <div class="ch-input-2 input-group border-radius">
+                                                    <label>
+                                                        <input type="number"
+                                                               name="length"
+                                                               placeholder=" "
+                                                               class="form-control inputText" id="price2" />
+                                                        <span>
+                                                            Qiyməti (usd) *
+                                                        </span>
+                                                        <p class="add-packageprice2 alert alertptag">Məhsulun qiymətini qeyd edin</p>
+                                                    </label>
+                                                     
+                                                </div>
+                                                <div class="ch-input-2 input-group border-radius">
+                                                    <label>
+                                                        <input type="number"
+                                                               name="length"
+                                                               placeholder=" "
+                                                               class="form-control inputText" id="trackid2" />
+                                                        <span>
+                                                            Sifarişin İzləmə kodu *
+                                                        </span>
+                                                        <p class="add-trackid2 alert alertptag">Sifarişin izləmə kodunu qeyd edin</p>
+                                                    </label>
+                                                     
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4 col-xs-12">
+                                                <h5>Çatdırılma ofisi*</h5>
+                                                <div class="invoice-address input-group border-radius">
+                                                     
+                                                    <div  
+                                                         class="dropdown select-tag-container single searchable">
+                                                        <div class="dropdown-toggle">
+                                                            <div class="select-tag-options">
+                                                                <span class="selected-tag" id="deliveryoffice2">Baki</span>
+                                                               
+                                                            </div>
+                                                            <div class="indicator-container">
+                                                              
+                                                                <i class="open-indicator"></i>
+                                                              
+                                                            </div>
+                                                        </div>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a>Baki</a></li>
+                                                            <li class=""><a>Gence</a></li>
+                                                            <li class=""><a>Sumqayit</a></li>
+                                                        </ul>
+                                                         
+                                                    </div>
+                                                     
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8 col-xs-12 date-container">
+                                                <h5>Sifarişin verilmə tarixi *</h5>
+                                                <div class="invoice-day input-group border-radius">
+                                                    <div  
+                                                         class="dropdown select-tag-container single searchable">
+                                                        <div class="dropdown-toggle">
+                                                            <div class="select-tag-options">
+                                                                <span class="selected-tag" id="dayoforder2">
+                                                                    1
+                                                                </span>
+                                                                
+                                                            </div>
+                                                            <div class="indicator-container">
+                                                               
+                                                                <i class="open-indicator"></i>
+                                                               
+                                                            </div>
+                                                        </div>
+                                                        <ul class="dropdown-menu list-scroll day-scroll-list" id="month-day">
+                                                            @for (int i = 1; i <= 31; i++)
+                                                            {
+                                                                <li>
+                                                                    <a data-value="@i">
+                                                                        <span class="text">@i</span>
+                                                                    </a>
+                                                                </li>
+                                                            }
+                                                        </ul>
+                                                         
+                                                    </div>
+                                                </div>
+                                                <div class="invoice-month input-group border-radius">
+                                                    <div  
+                                                         class="dropdown select-tag-container single searchable">
+                                                        <div class="dropdown-toggle">
+                                                            <div class="select-tag-options">
+                                                                <span class="selected-tag" id="monthoforder2">
+                                                                    Yanvar
+                                                                </span>
+                                                                
+                                                            </div>
+                                                            <div class="indicator-container">
+                                                               
+                                                                <i class="open-indicator"></i>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        <ul class="dropdown-menu list-scroll month-scroll-list">
+                                                            <li>
+                                                                <a data-value="Yanvar">
+                                                                    <span class="text">Yanvar</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a data-value="Fevral">
+                                                                    <span class="text">Fevral</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a data-value="Mart">
+                                                                    <span class="text">Mart</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a data-value="Aprel">
+                                                                    <span class="text">Aprel</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a data-value="May">
+                                                                    <span class="text">May</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a data-value="İyun">
+                                                                    <span class="text">İyun</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a data-value="İyul">
+                                                                    <span class="text">İyul</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a data-value="Avqust">
+                                                                    <span class="text">Avqust</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a data-value="Sentyabr">
+                                                                    <span class="text">Sentyabr</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a data-value="Oktyabr">
+                                                                    <span class="text">Oktyabr</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a data-value="Noyabr">
+                                                                    <span class="text">Noyabr</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a data-value="Dekabr">
+                                                                    <span class="text">Dekabr</span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                         
+                                                    </div>
+                                                </div>
+                                                <div class="invoice-year input-group border-radius" id="year-container2">
+                                                    <div  
+                                                         class="dropdown select-tag-container single searchable">
+                                                        <div class="dropdown-toggle">
+                                                            <div class="select-tag-options">
+                                                                <span class="selected-tag" id="yearoforder2">
+                                                                    2020
+                                                                     
+                                                                </span>
+                                                                
+                                                            </div>
+                                                            <div class="indicator-container">
+                                                               
+                                                                <i class="open-indicator"></i>
+                                                              
+                                                            </div>
+                                                        </div>
+                                                        <ul class="dropdown-menu year-scroll-list">
+                                                            <li>
+                                                                <a data-value="2020">
+                                                                    <span class="text">2020</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a data-value="2019">
+                                                                    <span class="text">2019</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a data-value="2018">
+                                                                    <span class="text">2018</span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                         
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <div class="textarea-form form-group">
+                                                    <textarea rows="4"
+                                                              id="comment2"
+                                                              placeholder="Bağlamanıza aid qeydləriniz varsa yazın"
+                                                              class="form-control"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="btn-part text-left">
+                                                    <label for="file"
+                                                           class="invoice-upload">
+                                                        <span>İnvoys yüklə</span>
+                                                        <input refs="file"
+                                                               type="file"
+                                                               id="file"
+                                                               name="invoice"
+                                                               class="form-control-file" />
+                                                    </label>
+                                                    <button class="btn-effect" id="declarebtn">
+                                                        <span>Göndər</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="invoice-right block">
+                            <h3 class="text-center">Diqqət!</h3>
+                            <p>
+                                Dəyərli müştərilər, sifarişlərinizi özünüz etdiyiniz zaman
+                                bəyannamə Sizin tərəfinizdən əlavə olunmalıdır. İnvoys
+                                yükləmədən bəyannamə əlavə etmək mümkün deyildir.
+                                Bəyannaməni dəqiq və operativ doldurmağınız Sizin
+                                bağlamalarınızın gömrük yoxlamasından daha tez və problemsiz
+                                keçməsinə kömək edəcək.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+    <script src="~/js/user-panel.js"></script>
+    <script src="~/js/declare.js"></script>
+    <script src="~/js/declareAjaxPost.js"></script>
+}

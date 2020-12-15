@@ -1,0 +1,218 @@
+﻿@model CustomerEditViewModel
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles{
+    <link href="~/admin/css/userDetails.css" rel="stylesheet">
+}
+<div class="col-xl-12 order-xl-1">
+    <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <h3 class="mb-0">My account</h3>
+                </div>
+                <div class="col-4 text-right">
+                    <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <form asp-action="Edit" method="post" asp-controller="Customer">
+                <input asp-for="Id" type="hidden" id="input-username" class="form-control form-control-alternative" value="@Model.Id">
+                <h6 class="heading-small text-muted mb-4">User information</h6>
+                <div class="pl-lg-4">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group focused">
+                                <label class="form-control-label" for="input-username">First Name</label>
+                                <input asp-for="FirstName" type="text" id="input-username" class="form-control form-control-alternative" value="@Model.FirstName">
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-email">Email address</label>
+                                <input asp-for="Email" type="email" id="input-email" class="form-control form-control-alternative" value="@Model.Email">
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group focused">
+                                <label class="form-control-label" for="input-last-name">Last name</label>
+                                <input asp-for="LastName" type="text" id="input-last-name" class="form-control form-control-alternative" value="@Model.LastName">
+                                <span asp-validation-for="LastName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group focused">
+                                <label for="exampleFormControlSelect1">Gender</label>
+                                <select asp-for="@Model.Gender" class="form-control" id="exampleFormControlSelect1">
+
+
+                                    <option>Qadin</option>
+                                    <option>Kisi</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="my-4">
+                <!-- Address -->
+
+                <div class="pl-lg-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group focused">
+                                <label class="form-control-label" for="input-address">Serial Number</label>
+                                <input asp-for="SeriaNumber" id="input-address" class="form-control form-control-alternative" value="@Model.SeriaNumber" type="text">
+                                <span asp-validation-for="SeriaNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group focused">
+                                <label class="form-control-label" for="input-city">CitizenShip</label>
+                                <input asp-for="CitizenShip" type="text" id="input-city" class="form-control form-control-alternative" value="@Model.CitizenShip">
+                                <span asp-validation-for="CitizenShip" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Day of birth</label>
+                                <select asp-for="@Model.DayOfBirth" class="form-control" id="exampleFormControlSelect1">
+
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>
+                                    <option>11</option>
+                                    <option>12</option>
+                                    <option>13</option>
+                                    <option>14</option>
+                                    <option>15</option>
+                                    <option>16</option>
+                                    <option>17</option>
+                                    <option>18</option>
+                                    <option>19</option>
+                                    <option>20</option>
+                                    <option>21</option>
+                                    <option>22</option>
+                                    <option>23</option>
+                                    <option>24</option>
+                                    <option>25</option>
+                                    <option>26</option>
+                                    <option>27</option>
+                                    <option>28</option>
+                                    <option>29</option>
+                                    <option>30</option>
+                                    <option>31</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Month of birth</label>
+                                <select asp-for="@Model.MonthOfBirth" class="form-control" id="exampleFormControlSelect1">
+
+                                    <option>Yanvar</option>
+                                    <option>Fevral</option>
+                                    <option>Mart</option>
+                                    <option>Aprel</option>
+                                    <option>May</option>
+                                    <option>Iyun</option>
+                                    <option>Iyul</option>
+                                    <option>Avqust</option>
+                                    <option>Sentyabr</option>
+                                    <option>Oktyabr</option>
+                                    <option>Noyabr</option>
+                                    <option>Debakbr</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Year of birth</label>
+                                <select asp-for="@Model.YearOfBirth" class="form-control" id="exampleFormControlSelect1">
+
+                                    <option>2002</option>
+                                    <option>2001</option>
+                                    <option>2000</option>
+                                    <option>1999</option>
+                                    <option>1998</option>
+                                    <option>1997</option>
+                                    <option>1996</option>
+                                    <option>1995</option>
+                                    <option>1994</option>
+                                    <option>1993</option>
+                                    <option>1992</option>
+                                    <option>1991</option>
+                                    <option>1990</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-country">Fin code</label>
+                                <input asp-for="FinCode" type="text" id="input-postal-code" class="form-control form-control-alternative" value="@Model.FinCode">
+                                <span asp-validation-for="FinCode" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-country">Address</label>
+                                <input asp-for="IdAddress" type="text" id="input-postal-code" class="form-control form-control-alternative" value="@Model.IdAddress">
+                                <span asp-validation-for="IdAddress" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-country">Customer Id</label>
+                                <input asp-for="CustomerId" type="text" id="input-postal-code" class="form-control form-control-alternative" value="@Model.CustomerId">
+                                <span asp-validation-for="CustomerId" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-country">Delivery Office</label>
+                                <select asp-for="@Model.DeliveryOffice" class="form-control" id="exampleFormControlSelect1">
+
+                                    <option>Baki</option>
+                                    <option>Gence</option>
+                                    <option>Sumqayit</option>
+                                    <option>Zaqatala</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-country">Is active</label>
+                                <input asp-for="IsActive" type="checkbox" id="input-postal-code" class="form-control form-control-alternative" >
+                                <span asp-validation-for="IsActive" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-info" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+

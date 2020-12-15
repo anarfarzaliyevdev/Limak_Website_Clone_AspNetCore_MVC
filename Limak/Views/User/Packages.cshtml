@@ -1,0 +1,468 @@
+﻿@model PackagesViewModel
+@{
+    ViewData["Title"] = "Packages";
+    Layout = "_UserPanelLayout";
+
+}
+@section Styles{
+    <link rel="stylesheet" href="~/css/user-panel.css" />
+    <link rel="stylesheet" href="~/css/packages.css" />
+}
+
+
+<!-- Packages -->
+<div class="col-md-9 col-sm-11 col-xs-11 package basket panel-right" data-content="panel-packages"
+     id="package">
+    <div class="row">
+        <div class="col-xs-12 order-body">
+            <div class="block">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a class="order-img1 active"
+                           data-toggle="pill"
+                           href="#tab1">
+                            Türkiyə
+                        </a>
+                    </li>
+                    <li>
+                        <a class="order-img2"
+                           data-toggle="pill" href="#tab2">
+                            Amerika
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="tabContent"
+             class="col-xs-12">
+            <div class="tab-content">
+                <div class="tab-pane fade in active" id="tab1">
+
+                    <div class="block">
+                        <div class="block-head">
+                            <h3>Bağlamalarım</h3>
+                            <ul class="nav navbar-nav navbar-right packages-filter">
+
+                                <li class="dropdown">
+                                    <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="drop-link">
+                                        <span class="badge"></span><span class="filter-current-status"></span><i class="fa fa-angle-down"></i>
+                                    </a>
+                                    <ul aria-labelledby="dropdownMenu2" class="dropdown-menu filter-status" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 30px, 0px);">
+                                        <li><a><span class="order-status">Hamısı </span><span class="badge" data-badge-status="Hamısı">0</span></a></li>
+                                        <li><a><span class="order-status">Sifariş verildi </span><span class="badge" data-badge-status="Sifariş verildi">0</span></a></li>
+                                        <li><a><span class="order-status">Xaricdəki anbar  </span><span class="badge" data-badge-status="Xaricdəki anbar">0</span></a></li>
+                                        <li><a><span class="order-status">Yoldadır </span><span class="badge" data-badge-status="Yoldadır">0</span></a></li>
+                                        <li><a><span class="order-status">Gömrük yoxlanışı </span><span class="badge" data-badge-status="Gömrük yoxlanışı">0</span></a></li>
+                                        <li><a><span class="order-status">Bakı anbarı </span><span class="badge" data-badge-status="Bakı anbarı">0</span></a></li>
+                                        <li><a><span class="order-status">Kuryer çatdırma </span><span class="badge" data-badge-status="Kuryer çatdırma">0</span></a></li>
+                                        <li><a><span class="order-status">İade </span><span class="badge" data-badge-status="İade">0</span></a></li>
+                                        <li><a><span class="order-status">Tamamlanmış </span><span class="badge" data-badge-status="Tamamlanmış">0</span></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="block-inner">
+                            <div class="select-all">
+                                <label class="check-button">
+                                    <span class="check-text">Hamısını seç</span>
+                                    <input type="checkbox">
+                                    <span class="checkmark">
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="block-border scrollable-table">
+                                <div class="table-list">
+                                  
+                                        <table class="table table-bordered table-responsive">
+                                            <tbody id="turkey-records">
+                                                @if (Model.Declarations.Count > 0)
+                                                {
+                                                    @for (int i = 0; i < Model.Declarations.Count; i++)
+                                                    {
+                                                        if (@Model.Declarations[i].CountryName == "Türkiyə")
+                                                        {
+
+
+                                                            <tr data-declaration="@Model.Declarations[i].Id" data-order-status="@Model.Declarations[i].Status">
+
+
+                                                                <td>
+                                                                    @if (!Model.Declarations[i].IsCargoPaid && Model.Declarations[i].Status != "Sifariş verildi")
+                                                                    {
+                                                                        <label class="check-button ">
+
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark">
+                                                                            </span>
+
+                                                                        </label>
+                                                                    }<p>Sifariş №<br><span>@Model.Declarations[i].OrderNo </span></p>
+                                                                </td>
+                                                                <td><p>Sifariş tarixi <br><span>@Model.Declarations[i].DayOfOrder-@Model.Declarations[i].MonthOfOrder-@Model.Declarations[i].YearOfOrder  </span></p></td>
+                                                                <td><p>Mağaza <br><span id="packagestorename" class="package-store-name">@Model.Declarations[i].StoreName  </span></p></td>
+                                                                <td><p>Status<br><span>@Model.Declarations[i].Status </span></p></td>
+                                                                <td>
+                                                                    <button type="button" class="btn-effect buttonlook">
+                                                                        Bax
+                                                                    </button>
+                                                                    @if (Model.Declarations[i].Status == "Sifariş verildi")
+                                                                    {
+                                                                        <button type="button" data-toggle="modal" data-target=".edit" class="btn-effect green editpackage">
+                                                                            Düzəliş
+                                                                        </button>
+                                                                        <button type="button" class="btn-effect red removepackage">Sil</button>
+                                                                    }
+
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="looksection">
+                                                                <td><p>İzləmə №<br><span id="producttrackid" class="product-track-id">@Model.Declarations[i].TrackId </span></p></td>
+                                                                <td class="product"><p>Məhsulun sayı<br><span id="productcount" class="product-count">@Model.Declarations[i].PackageProductNumber</span></p> <p>Çəkisi<br><span>@Model.Declarations[i].Weight kq</span></p></td>
+                                                                <td class="cargo-price-td">
+                                                                    <p>
+                                                                        Çatdırılma qiyməti<br><span class="package-cargo-price">
+                                                                            @{ Model.Declarations[i].CargoPrice = Math.Round(Model.Declarations[i].CargoPrice * 1.7m, 2);}
+                                                                            @Model.Declarations[i].CargoPrice
+                                                                        </span> AZN
+                                                                    </p>
+                                                                </td>
+                                                                <td>
+                                                                    <p>
+                                                                        Qiymət<br><span id="productprice" class="product-price"> @Model.Declarations[i].Price<span>TL</span> </span>
+                                                                    </p>
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    <button type="button" data-toggle="modal" data-target="#myModal" class="btn-effect follow_order " style="width: 100% !important;">
+                                                                        Sifarişi izlə
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+
+                                                        }
+
+                                                    }
+
+                                                }
+                                            </tbody>
+                                        </table>
+                              
+                                </div>
+
+                            </div>
+                            <div class="sum">
+                                <span>Çatdırılma haqqı</span>
+                                <p class="total-cargo-amount"><span>0.00</span> AZN</p>
+                                <p>0.00 USD</p>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <button type="button"
+                                            class="btn-effect pay-cargo-btn">
+                                        Balansdan Ödəniş et
+                                    </button>
+                                </div>
+                                <div class="col-md-3">
+                                    <form method="POST"
+                                          action="">
+                                        <input type="hidden"
+                                               name="amount"
+                                               value="0.00" />
+                                        <input type="hidden"
+                                               name=" " />
+                                        <button type="submit"
+                                                class="btn-effect ">
+                                            Kartdan Ödəniş et
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="tab-pane fade" id="tab2">
+
+                    <div class="block">
+                        <div class="block-head">
+                            <h3>Bağlamalarım</h3>
+                            <ul class="nav navbar-nav navbar-right packages-filter">
+
+                                <li class="dropdown">
+                                    <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="drop-link">
+                                        <span class="badge"></span><span class="filter-current-status"></span><i class="fa fa-angle-down"></i>
+                                    </a>
+                                    <ul aria-labelledby="dropdownMenu2" class="dropdown-menu filter-status" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 30px, 0px);">
+                                        <li><a><span class="order-status">Hamısı </span><span class="badge" data-badge-status="Hamısı">0</span></a></li>
+                                        <li><a><span class="order-status">Sifariş verildi </span><span class="badge" data-badge-status="Sifariş verildi">0</span></a></li>
+                                        <li><a><span class="order-status">Xaricdəki anbar  </span><span class="badge" data-badge-status="Xaricdəki anbar">0</span></a></li>
+                                        <li><a><span class="order-status">Yoldadır </span><span class="badge" data-badge-status="Yoldadır">0</span></a></li>
+                                        <li><a><span class="order-status">Gömrük yoxlanışı </span><span class="badge" data-badge-status="Gömrük yoxlanışı">0</span></a></li>
+                                        <li><a><span class="order-status">Bakı anbarı </span><span class="badge" data-badge-status="Bakı anbarı">0</span></a></li>
+                                        <li><a><span class="order-status">Kuryer çatdırma </span><span class="badge" data-badge-status="Kuryer çatdırma">0</span></a></li>
+                                        <li><a><span class="order-status">İade </span><span class="badge" data-badge-status="İade">0</span></a></li>
+                                        <li><a><span class="order-status">Tamamlanmış </span><span class="badge" data-badge-status="Tamamlanmış">0</span></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="block-inner">
+                            <div class="select-all">
+                                <label class="check-button">
+                                    <span class="check-text">Hamısını seç</span>
+                                    <input type="checkbox">
+                                    <span class="checkmark">
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="block-border scrollable-table">
+                                <div class="table-list">
+                                    <table class="table table-bordered table-responsive">
+                                        <tbody id="america-records">
+                                            @if (Model.Declarations.Count > 0)
+                                            {
+                                                @for (int i = 0; i < Model.Declarations.Count; i++)
+                                                {
+                                                    if (@Model.Declarations[i].CountryName == "Amerika")
+                                                    {
+
+                                                        <tr data-declaration="@Model.Declarations[i].Id" data-order-status="@Model.Declarations[i].Status">
+
+                                                            <td>
+                                                                @if (!Model.Declarations[i].IsCargoPaid && Model.Declarations[i].Status != "Sifariş verildi")
+                                                                {
+                                                                    <label class="check-button ">
+
+                                                                        <input type="checkbox">
+                                                                        <span class="checkmark">
+                                                                        </span>
+
+                                                                    </label>
+                                                                }
+                                                                <p>Sifariş №<br><span>@Model.Declarations[i].TrackId</span></p>
+                                                            </td>
+                                                            <td><p>Sifariş tarixi <br><span>@Model.Declarations[i].DayOfOrder-@Model.Declarations[i].MonthOfOrder-@Model.Declarations[i].YearOfOrder </span></p></td>
+                                                            <td><p>Mağaza <br><span class="package-store-name">@Model.Declarations[i].StoreName</span></p></td>
+                                                            <td><p>Status<br><span>@Model.Declarations[i].Status </span></p></td>
+                                                            <td>
+                                                                <button type="button" class="btn-effect buttonlook">
+                                                                    Bax
+                                                                </button>
+                                                                @if (Model.Declarations[i].Status == "Sifariş verildi")
+                                                                {
+                                                                    <button type="button" data-toggle="modal" data-target=".edit" class="btn-effect green editpackage">
+                                                                        Düzəliş
+                                                                    </button>
+                                                                    <button type="button" class="btn-effect red removepackage">Sil</button>
+                                                                }
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="looksection">
+                                                            <td><p>İzləmə №<br><span class="product-track-id">@Model.Declarations[i].TrackId</span></p></td>
+                                                            <td class="product"><p>Məhsulun sayı<br><span class="product-count">@Model.Declarations[i].PackageProductNumber</span></p> <p>Çəkisi<br><span>@Model.Declarations[i].Weight kq</span></p></td>
+                                                            <td class="cargo-price-td"><p>Çatdırılma qiyməti<br><span class="package-cargo-price">@Model.Declarations[i].CargoPrice</span> AZN</p></td>
+                                                            <td>
+                                                                <p>
+                                                                    Qiymət<br><span class="product-price"> @Model.Declarations[i].Price<span>USD</span> </span>
+                                                                </p>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <button type="button" data-toggle="modal" data-target="#myModal" class="btn-effect follow_order" style="width: 100% !important;">
+                                                                    Sifarişi izlə
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+
+
+                                                    }
+
+                                                }
+
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="sum">
+                                <span>Çatdırılma haqqı</span>
+                                <p class="total-cargo-amount"><span>0.00</span> AZN</p>
+                                <p>0.00 USD</p>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <button type="button"
+                                            class="btn-effect pay-cargo-btn">
+                                        Balansdan Ödəniş et
+                                    </button>
+                                </div>
+                                <div class="col-md-3">
+                                    <form method="POST"
+                                          action="/user-panel/online-pay">
+                                        <input type="hidden"
+                                               name="amount"
+                                               value="0.00" />
+                                        <input type="hidden"
+                                               name=" " />
+                                        <button type="submit"
+                                                class="btn-effect">
+                                            Kartdan Ödəniş et
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" class="modal follow fade " aria-modal="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <table class="table table-responsive">
+                    <tbody>
+                        <tr>
+                            <td><p>Sifariş № <br><span class="modalTrackid"></span></p></td>
+                            <td><p>Tarix <br><span class="modalDate"></span></p></td>
+                            <td><p>Mağaza <br><span class="modalStorename"></span></p></td>
+                            <td><p>Status<br><span class="modalStatus"> </span></p></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close">
+                    <img src="~/assets/images/error.png" alt="error">
+                </button>
+            </div>
+            <div class="modal-body follow-order">
+                <div class="follow-line">
+                    <ul id="status-modal-ul">
+                        <li class="" data-status="Sifariş verildi"><span class="shopping-bag"></span> <p><b>Sifariş verildi</b><b class="statusDate"></b></p></li>
+                        <li class="" data-status="Xaricdəki anbar"><span class="order-follow"></span> <p><b>Xaricdəki anbar</b><b class="statusDate"></b></p></li>
+                        <li class="" data-status="Yoldadır"><span class="departures"></span> <p><b>Yoldadır</b><b class="statusDate"></b></p></li>
+                        <li class="" data-status="Gömrük yoxlanışı"><span class="warehouse"></span> <p><b>Gömrük yoxlanışı</b><b class="statusDate"></b></p></li>
+                        <li class="" data-status="Bakı anbarı"><span class="warehouse"></span> <p><b>Bakı anbarı</b><b class="statusDate"></b></p> </li>
+                        <li class="" data-status="Kuryer çatdırma"><span class="shipped"></span> <p><b>Kuryer çatdırma</b><b class="statusDate"></b></p></li>
+                        <li class="" data-status="İade"><span class="shipped"></span> <p><b>İade</b><b class="statusDate"></b></p></li>
+                        <li class="" data-status="Tamamlanmış"><span class="package"></span> <p><b>Tamamlanmış</b><b class="statusDate"></b></p></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="myModal1" role="dialog" aria-labelledby="myModalLabel" class="modal fade edit " style="display: block; padding-left: 14px;" aria-modal="true">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Düzəliş</h4>
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close">
+                    <img src="~/assets/images/error.png" alt="error">
+                </button>
+            </div>
+            <input type="hidden" name="name" id="packageid" />
+            <div class="modal-body edit-order">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-6 ">
+                        <div class="input-group border-radius">
+                            <label>
+                                <input type="text" name="length" placeholder=" " class="form-control inputText" id="storeNameEdit">
+                                <span>Mağaza adı  * </span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                        <div class="input-group border-radius">
+                            <label>
+                                <input type="text" name="length" placeholder=" " class="form-control inputText" id="ProductTypeEdit">
+                                <span>Bağlamadakı məhsulun növü   * </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-xs-12">
+                        <div class="input-group border-radius">
+                            <label>
+                                <input type="text" name="length" placeholder=" " class="form-control inputText" id="PriceEdit">
+                                <span>Qiyməti  * </span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xs-12">
+                        <div class="input-group border-radius">
+                            <label>
+                                <input type="text" name="length" placeholder=" " class="form-control inputText" id="TrackIdEdit">
+                                <span>Sifarişin İzləmə kodu  * </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-xs-12 form-group">
+                        <label>
+                            <span>Çatdırılma ofisi*</span>
+                        </label>
+                        <select class="form-control" id="DeliveryOfficeEdit">
+                            <option value="1">Bakı  </option>
+                            <option value="2">Gəncə</option>
+                            <option value="3">Sumqayıt</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 col-xs-12">
+                        <label>
+                            <span>Bağlamadakı məhsulun sayı*</span>
+                        </label>
+                        <div class="ch-input-1 input-group input-group-container">
+                            <span class="input-group-prepend">
+                                <button type="button" data-dir="dwn" class="btn btn-default btn-decrease-pack ">
+                                    <strong>-</strong>
+                                </button>
+                            </span>
+                            <input placeholder="Bağlamadakı məhsulun sayı" type="number" min="1" class="form-control text-center package-count" id="ProductCountEdit">
+                            <span class="input-group-append">
+                                <button type="button" data-dir="up" class="btn btn-default btn-increase-pack "><strong>+</strong></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="textarea-form form-group">
+                            <textarea rows="4" id="comment" placeholder="Bağlamanıza aid qeydləriniz varsa yazın" class="form-control commentEdit"> </textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="btn-part text-left">
+                            <label for="file" class="invoice-upload">
+                                <span>İnvoys yüklə</span>
+                                <input refs="file" type="file" id="file" name="invoice" class="form-control-file">
+                            </label>
+                            <button data-dismiss="modal" class="btn-effect sendbutton"><span>Göndər</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Scripts{
+    <script src="~/js/packages.js"></script>
+    <script src="~/js/packageStatusAjaxPost.js"></script>
+    <script src="~/js/payCargoPackages.js"></script>
+    <script src="~/js/packageRemoveAjaxPost.js"></script>
+    <script src="~/js/packageEditAjaxPost.js"></script>
+}

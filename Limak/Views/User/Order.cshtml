@@ -1,0 +1,455 @@
+﻿@inject SignInManager<ApplicationUser> signInManager;
+@inject UserManager<ApplicationUser> UserManager;
+@model OrderGetViewModel
+@{
+    ViewData["Title"] = "Packages";
+
+    var customerId = "";
+
+    @if (signInManager.IsSignedIn(User))
+    {
+        customerId = UserManager.FindByNameAsync(User.Identity.Name).Result.CustomerId;
+   
+    }
+}
+@section Styles{
+    <link rel="stylesheet" href="~/css/user-panel.css" />
+    <link rel="stylesheet" href="~/css/order.css" />
+}
+
+
+<section class="order content ">
+    <div class="container">
+        <div class="row">
+         
+            <div class="order-head col-xs-12">
+                <div class="col-md-4 col-sm-5 col-xs-6">
+                    <h4>Sifariş <b>et</b></h4>
+                </div>
+                <div class="col-md-8 col-sm-7 col-xs-6">
+                    <ol class="breadcrumb web">
+                        <li><a href="/">Ana səhifə </a></li>
+                        <li><a href=""> İstifadəçi paneli </a></li>
+                        <li class="active">Sifariş et</li>
+                    </ol>
+                    <ol class="breadcrumb mobile">
+                        <li><a href="/">... </a></li>
+                        <li class="active">Sifariş et</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="order-body col-xs-12">
+                <div class="row relative">
+                    <div class="changeable col-md-9 col-sm-8 col-xs-12">
+                        <div class="order-left-side block">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#1"
+                                       
+                                       data-toggle="tab"
+                                       class="order-img1">
+                                        Türkiyə
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="1" class="tab-pane fade in active order-list">
+
+                                    <div class="left-content">
+                                        <div class="row">
+                                            <div class="col-md-9 col-sm-9 col-xs-6">
+                                                <div class="input-group border-radius">
+                                                    <label>
+                                                        <input type="text"
+                                                               placeholder=" "
+                                                               class="form-control inputText " id="productLink" />
+                                                        <span>Məhsul linki *</span>
+                                                        <p class="add-productlink alert alertptag">Məhsulun linkini qeyd edin</p>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 col-sm-3 col-xs-6">
+                                                <div class="input-group border-radius">
+                                                    <label>
+                                                        <input type="number"
+                                                               placeholder=" "
+                                                                oninput="validity.valid||(value='');"
+                                                               class="form-control inputText order-amount-input " id="orderPrice"
+                                                               value="" />
+                                                        <span>Məbləğ(TL) *</span>
+                                                        <p class="add-productprice alert alertptag">Məhsulun qiymətini qeyd edin</p>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <div class="input-group">
+                                                    <label class="select-class">Türkiyə içi kargo *</label>
+                                                    <div class="invoice-address input-group border-radius">
+                                                        <div   class="dropdown select-tag-container single searchable">
+                                                            <div class="dropdown-toggle">
+                                                                <div class="select-tag-options">
+                                                                    <span class="selected-tag">
+                                                                        Xeyr
+                                                                    </span>
+                                                                  
+                                                                </div>
+                                                                <div class="indicator-container">
+                                                                    
+                                                                    <i class="open-indicator"></i>
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                            <ul class="internal-cargo dropdown-menu" style="display:none">
+                                                                <li data-value="0"><a>Xeyr</a></li>
+                                                                <li data-value="1"><a>Beli</a></li>
+
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3 col-xs-6 internal-cargo-container">
+                                                <div class="cargo-amount internal-cargo-input">
+                                                    <label class="select-class">Karqo məbləği *</label>
+                                                    <input type="number"
+                                                           name="input"
+                                                            oninput="validity.valid||(value='');"
+                                                           class="form-control order-kargo-amount-input" id="turkey-cargo-input" />
+                                                </div>
+
+                                            </div>
+                                            <div class="col-sm-3 col-xs-6">
+                                                <div class="input-group border-radius">
+                                                    <label>
+                                                        <label class="select-class">Cəmi(+5%)</label>
+                                                        <input type="text"
+                                                               disabled="disabled"
+                                                               placeholder="Cəmi"
+                                                               class="form-control order-total-amount-input" />
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-12 col-xs-12">
+                                                <div class="input-group input-group-container">
+                                                    <span class="input-group-prepend">
+                                                        <button type="button"
+                                                                
+                                                                class="btn btn-default btn-decrease-pack">
+                                                            <strong>-</strong>
+                                                        </button>
+                                                    </span>
+                                                    <input placeholder="Bağlamadakı məhsulun sayı *"
+                                                           type="number"
+                                                           value="1"
+                                                           min="1"
+                                                             oninput="validity.valid||(value='');"
+                                                           class="form-control text-center package-count " id="orderCount" />
+                                                    <span class="input-group-append">
+                                                        <button type="button"
+                                                                
+                                                                class="btn btn-default btn-increase-pack">
+                                                            <strong>+</strong>
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-12 col-xs-12">
+                                                <div class="input-group border-radius">
+                                                    <label>
+                                                        <input type="text"
+                                                               name="length"
+                                                               placeholder=" "
+                                                               class="form-control inputText " id="orderNote" />
+                                                        <span>Ölçü, rəng və s. üçün qeydlər *</span>
+                                                        <p class="add-productnote alert alertptag">Məhsul haqqında qeyd edin</p>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 col-sm-12">
+                                                <div class="btn-part text-right">
+                                                    <button class="btn-link-2 btn-effect btn-remove"><span>Linki sil</span></button>
+                                                    <button class="btn-add btn-effect add-order-btn">
+                                                        <span>Yeni link əlavə et</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="changeable fixed-right col-md-3 col-sm-4 col-xs-12">
+                        <div class="right-top block">
+                            <div>
+                                <button type="button"
+                                        data-toggle="tooltip"
+                                        data-placement="top"
+                                        title=""
+                                        data-original-title="Bu, Sizin Limak vasitəsilə son 30 gündə ölkəyə gətirdiyiniz bağlamaların məhsul dəyəri
+            və çatdırılma haqqı üçün ödədiyiniz məbləğdir. Qeyd edək ki, qanunvericiliyə görə 30
+            gün ərzində şəxsi istifadə üçün gətirilmiş poçt yüklərinin dəyəri və bunun üçün ödənmiş
+            çatdırılma haqqı toplam 300 dolları keçdikdə gömrük rüsumu tətbiq edilir."
+                                        class="pull-right">
+                                    <img src="~/assets/images/question-mark.png"
+                                         alt="question-mark"
+                                         class="img-responsive" />
+                                </button>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <h4>Son 30 gün</h4>
+                                        <p>
+                                            0.00<sup>$</sup>
+                                        </p>
+                                    </div>
+                                    <div class="col-xs-6 relative">
+
+                                        <span id="procent">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="right-bottom">
+                            <h4 class="text-center">Sifariş et</h4>
+                            <label class="radio-button">
+                                <span class="exp">Kart ilə ödəniş </span> <br />
+                                <span class="description">
+                                    ( İstənilən kredit və ya debet kartı ilə ödəniş edə
+                                    bilərsiniz )
+                                </span>
+                                <input type="radio"
+                                       value="0"
+                                       checked="checked"
+                                       name="radio" />
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="radio-button">
+                                <span class="exp">TL balansı ilə ödəniş </span> <br />
+                                <span class="description">
+                                    ( TL balansınızda kifayət qədər vəsait varsa, ödəniş edə
+                                    bilərsiniz <br /><b>TL balansınız: <span id="TRYBalance"> @Model.TRYBalance</span> TL</b> )
+                                </span>
+                                <input type="radio" value="1" name="radio" />
+                                <span class="checkmark"></span>
+                            </label>
+                            <div class="sum">
+                                <span>Cəmi: </span> <span id="totalCash" class="cash">
+                                <span id="totalCashAmount">0.00</span>  TL</span>
+                                <label class="check-button checkbox-label" id="btn-privacy">
+                                    <span data-toggle="modal"
+                                          data-target=".privacy-modal"
+                                          class="check-btn-text"
+                                          id="checkbox-span">Məsafəli satış şərtlərini qəbul edirəm</span>
+                                    <input type="checkbox"
+                                           data-toggle="modal"
+                                           data-checked="false"
+                                           data-target=".privacy-modal" />
+                                    <span class="checkmark"></span>
+                                    <p class="add-checkedrule alert alertptag">Məsafəli satış şərtlərini qəbul etdiyinizi qeyd edin</p>
+                                </label>
+                            </div>
+                            <div>
+                                <h5>Çatdırılma ofisi *</h5>
+                                <div class="invoice-address input-group border-radius">
+                                     
+                                    <div  
+                                         class="dropdown select-tag-container single searchable">
+                                        <div class="dropdown-toggle">
+                                            <div class="select-tag-options">
+                                                <span class="selected-tag">
+                                                    Bakı
+                                                     
+                                                </span>
+                                                
+                                            </div>
+                                            <div class="indicator-container">
+                                                
+                                                <i class="open-indicator"></i>
+                                               
+                                            </div>
+                                        </div>
+                                        <ul class="dropdown-menu" id="cargo-address">
+                                            <li><a>Baki</a></li>
+                                            <li class=""><a>Gence</a></li>
+                                            <li class=""><a>Sumqayit</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button class="btn-effect" id="payment">Ödəniş et</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div 
+         role="dialog"
+         class="privacy-modal modal fade"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <header class="modal-header">
+                    <h5 class="modal-title">
+                        <h3>"Limak VM" MMC-nin məsafəli satış müqaviləsi</h3>
+                    </h5>
+                    <button type="button"
+                            data-dismiss="modal"
+                            aria-label="Close"
+                            class="close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </header>
+                <main class="modal-body">
+                    <div>
+                        <p>
+                            Sifarişçi bu müqaviləni təsdiqləməklə şirkətin məsafəli satış
+                            şərtlərini qəbul etdiyini bildirir.
+                        </p>
+                        <h4>I. Sifarişçinin öhdəlikləri</h4>
+                        <ul>
+                            <li>
+                                — Sifarişçi sistemdə qeydiyyatdan keçməklə, şəxsi
+                                məlumatlarını tələb olunan qaydada qeyd etməlidir.
+                            </li>
+                            <li>
+                                — Sifarişçi qeydiyyatdan keçmək üçün daxil etdiyi
+                                məlumatların doğruluğuna məsuliyyət daşıyır.
+                            </li>
+                            <li>
+                                — Sonradan qeyd olunmuş məlumatlarda dəyişikliklər olarsa,
+                                bununla bağlı sistemə məlumatların yenilənməsi üçün bildiriş
+                                göndərmək sifarişçinin öhdəliyidir.
+                            </li>
+                            <li>
+                                — Qadağan olunmuş məhsullar xəbərdarlıqdan sonra da sifariş
+                                verilərsə, xidmət həmin sifarişçi üçün bloklanır.
+                            </li>
+                            <li>
+                                — Sistemin tələb etdiyi qaydada ödəmə etmək sifarişçinin
+                                öhdəliyidir.
+                            </li>
+                            <li>
+                                — Daşınan bağlamanın çatdırılma üçün xidmət haqqı iki meyar
+                                üzrə, çəki və həcmə görə hesablanır. İstifadəçi bu meyarlar
+                                üzrə hesablanmış daşınma haqqının daha çox olanı üzrə ödəniş
+                                aparmalıdır.
+                            </li>
+                            <li>
+                                — Öz şifrə və məlumatları digər şəxslərə verməməlidir. Belə
+                                hallar baş verərsə, borclanmaya və sifarişə görə şəxs özü
+                                cavabdehdir.
+                            </li>
+                            <li>
+                                — Sifarişdən sonra istehsalçı tələb olunan əşyaya adekvat
+                                olaraq sifarişi icra etmədiyi halda icraçı öhdəlik daşımır.
+                            </li>
+                            <li>
+                                — Sifarişlər edilərkən endirim barədə əlavə məlumat
+                                verməlidir, əks təqdirdə endirimlər nəzərə alınmır.
+                            </li>
+                            <li>
+                                — Sifarişçi “Təcili sifariş et” xidmətindən istifadə edirsə,
+                                buna görə müəyyən olunmuş taarifə uyğun əlavə ödəniş
+                                edilməlidir.
+                            </li>
+                            <li>
+                                — Sifarişçi gömrük rüsumu ödəmədən şəxsi istifadəsi üçün
+                                ölkəyə mal idxal etməklə bağlı Nazirlər Kabineti tərəfindən
+                                müəyyənləşdirilmiş aylıq həddi keçdiyi zaman bağlamanın
+                                rəsmiləşdirilməsi üçün ondan əlavə gömrük rüsumu tələb
+                                olunur.
+                            </li>
+                            <li>
+                                — Sifarişçi Nazirlər Kabineti tərəfindən müəyyənləşdirilmiş
+                                aylıq həddən artıq məbləğdə gömrük bəyannaməsi olan məhsul
+                                idxal etdikdə məhsulun gömrük rəsmiləşdirməsini özü və ya
+                                vəkalət verdiyi şəxs həyata keçirir.
+                            </li>
+                            <li style="color: red">
+                                — Sifarişçi sistemin xəbərdarlığına baxmayaraq, riskli hesab
+                                olunan online mağazalardan alış-veriş edilməsində israr
+                                edirsə, bu zaman baş verəcək risklərə görə icraçı məsuliyyət
+                                daşımır.
+                            </li>
+                            <li style="color: red">
+                                — İstehsalçının və sifariş olunmuş əşyanın keyfiyyət, ölçü,
+                                marka qüsurları və s. çatışmazlıqlara görə icraçı məsuliyyət
+                                daşımır.
+                            </li>
+                            <li style="color: red">
+                                — Qeyri-etik davranışlar sərgiləyən, əməkdaşlara qarşı açıq
+                                hörmətsizlik edən, xidmətdən yararlanarkən Azərbaycan
+                                qanunvericiliyinə zidd şəkildə davranan sifarişçinin hesabı
+                                məhdudlaşdırılır və ona bir daha xidmət göstərilmir.
+                                Sifarişçi qəbul edilmiş qaydalara uyğun davranmadığı halda
+                                onunla əməkdaşlığın dayandırılacağını qəbul edir.
+                            </li>
+                        </ul>
+                        <h4>II. İcraçının öhdəlikləri:</h4>
+                        <ul>
+                            <li>
+                                — İcraçı yalnız sifarişçi tərəfindən seçilən məhsulun həyata
+                                keçirir.
+                            </li>
+                            <li>
+                                — İcraçı sifarişçinin bütün məlumatlarının gizliliyinə və
+                                təhlükəsizliyinə təminat verir.
+                            </li>
+                            <li>
+                                — İcraçıya sifarişin alınması və bu xidmətin həyata
+                                keçirilməsi üçün müəyyən olunmuş vəsait tam ödədikdən sonra
+                                sifariş icra olunur.
+                            </li>
+                            <li>
+                                — İcraçının məhsulun tam və vaxtında, sifariş şərtlərinə
+                                görə sifariş edilməsi öhdəliyi var
+                            </li>
+                            <li>
+                                — İcraçı hər hansı səbəbdən sifarişi yerinə yetirə
+                                bilmədikdə sifarişçinin ödədiyi məbləği və xidmət haqqını
+                                ona geri qaytarır.
+                            </li>
+                            <li>
+                                — İcraçı sifarişin izlənməsini təmin edir, sifarişin
+                                verilməsi ilə bağlı sifarişçini mütəmadi məlumatlandırır.
+                            </li>
+                        </ul>
+                    </div>
+                     
+                </main>
+                <footer class="modal-footer">
+                    <div class="col-md-5 pull-right">
+                        <button data-dismiss="modal"
+                                class="btn btn-effect col-sm-6"
+                                id="accept-privacy">
+                            Təsdiq
+                        </button>
+                        <button data-dismiss="modal"
+                                class="btn btn-effect col-sm-6"
+                                id="cancel-privacy">
+                            İmtina
+                        </button>
+                    </div>
+                    <div class="col-md-7 pull-right"></div>
+                </footer>
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts{
+    <script src="~/js/user-panel.js"></script>
+    <script src="~/js/order.js"></script>
+    <script src="~/js/orderAjaxPost.js"></script>
+
+}

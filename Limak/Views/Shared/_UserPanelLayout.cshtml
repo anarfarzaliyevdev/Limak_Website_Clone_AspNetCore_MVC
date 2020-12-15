@@ -1,0 +1,504 @@
+﻿@inject SignInManager<ApplicationUser> signInManager;
+@inject UserManager<ApplicationUser> UserManager
+@{
+    var fullName = "";
+    var logined = "";
+    var customerId = "";
+    if (signInManager.IsSignedIn(User))
+    {
+        fullName = UserManager.FindByNameAsync(User.Identity.Name).Result.FirstName + " " + UserManager.FindByNameAsync(User.Identity.Name).Result.LastName;
+        logined = "logined";
+        customerId = UserManager.FindByNameAsync(User.Identity.Name).Result.CustomerId;
+    }
+
+    var activePage = ViewBag.ActivePage;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" sizes="32x32" href="~/favicon-32x32.png">
+    <title>Limak.az - Türkiyə və Amerikanın onlayn alış-veriş mağazaları</title>
+    <link rel="stylesheet" href="~/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/bootsrap-select.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/header-footer.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-default nav-top ">
+            <div class="container">
+                <ul class="nav navbar-nav">
+                    <li><a asp-action="Rules" asp-controller="Home">Qaydalar</a></li>
+                    <li><a href="#">Suallar</a></li>
+                    <li><a href="#">Haqqımızda</a></li>
+                </ul>
+
+                @if (signInManager.IsSignedIn(User))
+                {
+
+                    <!-- After login -->
+                    <ul class="nav navbar-nav navbar-right logined-menu">
+                        <li class="dropdown ">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                @fullName <img src="~/assets/images/chevron.png" class="img-responsive" alt="arrow-bottom">
+                            </a>
+                            <ul class="dropdown-menu ">
+                                <li><a asp-action="PanelPage" asp-controller="User">Panel səhifəsi</a></li>
+
+                                <li><a asp-action="ForeignAddresses" asp-controller="User">Xaricdəki ünvanlarım</a></li>
+                                <li><a asp-action="Orders" asp-controller="User">Sifarişlərim</a></li>
+                                <li><a asp-action="Packages" asp-controller="User">Bağlamalarım</a></li>
+                                <li><a asp-action="AznBalance" asp-controller="User">AZN Balansım</a></li>
+                                <li><a asp-action="TlBalance" asp-controller="User">TL Balansım</a></li>
+                                <li><a asp-action="Courier" asp-controller="User">Kuryer</a></li>
+                                <li><a asp-action="Question" asp-controller="User">Sorğu</a></li>
+                                <li><a asp-action="Settings" asp-controller="User">Tənzimləmələr</a></li>
+                                <li>
+                                    <form method="post" asp-action="Logout" asp-controller="Account">
+                                        <button type="submit">Hesabdan çıx</button>
+                                    </form>
+
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                }
+                else
+                {
+                    //Not logged in
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target=".bs-example-modal-sm">Daxil ol</a>
+                            <div class="login modal fade bs-example-modal-sm"  role="dialog">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
+                                        <form method="POST" asp-action="Login" asp-controller="Account">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">
+                                                    <img src="~/assets/images/close1.png" alt="close"
+                                                         class="">
+                                                </span>
+                                            </button>
+                                            <div class="row">
+                                                <div class="login-left col-sm-6 col-xs-12">
+                                                    <h3>Hesaba daxil ol</h3>
+                                                    <div class="input-group border-radius">
+                                                        <label>
+                                                            <input name="email" required type="text"
+                                                                   class="form-control inputText" placeholder=" ">
+                                                            <span>E-mail *</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="input-group border-radius">
+                                                        <label>
+                                                            <input name="password" required type="password" required
+                                                                   class="form-control inputText" placeholder=" ">
+                                                            <span>Şifrə* </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="save-password">
+                                                        <label class="check-button">
+                                                            <span>Yadda saxla</span>
+                                                            <input type="checkbox" name="isAgree">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                        <a asp-action="ForgetPassword" asp-controller="Account">Şifrəni unutdum</a>
+                                                    </div>
+                                                    <div class="btn-password">
+                                                        <button type="submit" href="" class="btn-enter btn-effect">
+                                                            Daxil
+                                                            ol
+                                                        </button>
+                                                        <a href=""
+                                                           class="btn-log btn-effect">Qeydiyyat</a>
+                                                    </div>
+                                                </div>
+                                                <div class="login-right col-sm-6">
+                                                    <img src="~/assets/images/pop-back.png"
+                                                         class="pop-bg img-responsive" alt="pop_back">
+                                                    <img src="~/assets/images/popup.png" alt="popup"
+                                                         class="pop-img">
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li><a asp-action="Register" asp-controller="Account">Qeydiyyat</a></li>
+                    </ul>
+                }
+
+            </div>
+        </nav>
+        @*Navbar*@
+        <nav class="navbar navbar-default nav-bottom @logined">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <img src="~/assets/images/menu-mob.png" alt="menu">
+                    </button>
+                    <a class="navbar-brand" asp-action="Index" asp-controller="Home">
+                        <img src="~/assets/images/Limak-Logo.png" class="img-responsive" alt="logo">
+                    </a>
+                    <ul class="mobile navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false">
+                                AZE <img src="~/assets/images/chevron.png"
+                                         class="img-responsive" alt="arrow-bottom">
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a rel="alternate" href="#">AZE</a>
+                                </li>
+                                <li>
+                                    <a rel="alternate" href="#">RUS</a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div id="collapse-menu" class="collapse-menu">
+                    <ul class="nav navbar-nav navbar-right web">
+                        <li class="tel">
+
+
+                            <a href="tel:*9595">*9595 <span>DƏSTƏK <br> XƏTTİ</span></a>
+                        </li>
+                        <li>
+                            <!-- After login -->
+                            @if (signInManager.IsSignedIn(User))
+                            {
+
+                                <a class="btn-effect blue" asp-action="Declare" asp-controller="User">BƏYAN ET</a>
+                            }
+                            <a asp-action="Order" asp-controller="User" class="btn-effect">SİFARİŞ ET</a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-left">
+                        <li class="top tel mobile">
+                            <a href="tel:*9595">*9595 <span>DƏSTƏK <br> XƏTTİ</span></a>
+                            <button class="close-menu"><img src="~/assets/images/close-menu.png" alt="lose"></button>
+                        </li>
+                        <li class="dropdown web">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                az
+                            </a>
+
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">az</a>
+                                </li>
+                                <li>
+                                    <a href="#">ru</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="mobile">
+                            <a asp-controller="User" asp-action="Order" class="btn-effect">SİFARİŞ ET</a>
+                        </li>
+                        <li class="mobile">
+                        </li>
+                        <li class="nav-link">
+                            <a asp-action="Countries" asp-controller="Home">Ölkələr</a>
+                        </li>
+                        <li class="nav-link"><a asp-action="Calculator" asp-controller="Home">Kalkulyator</a></li>
+                        <li class="nav-link"><a asp-action="Brands" asp-controller="Home">Mağazalar</a></li>
+                        <li class="nav-link"><a asp-action="Contact" asp-controller="Home">Əlaqə</a></li>
+                    </ul>
+                    <ul class="mobile list-time">
+                        <li> Bazar ertəsi-şənbə</li>
+                        <li><b>Sifariş et xidməti:</b></li>
+                        <li>24 saat</li>
+                        <li><b>Müştəri xidməti:</b></li>
+                        <li>24 saat</li>
+                        <li><b>Anbar:</b></li>
+                        <li>Saat 10:00`dan - 21:00`a dək</li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="overlay-menu"></div>
+    </header>
+    @*Main content*@
+    <section class="content">
+        <div class="container">
+            <div class="row">
+                <div class="page-head col-xs-12">
+                    <div class="col-md-3 col-sm-6 col-xs-6">
+                        <h4>İSTİFADƏÇİ <span>PANELİ</span></h4>
+                    </div>
+                    <div class="col-md-9 col-sm-6 col-xs-6">
+                        <span class="user-code">MÜŞTƏRİ KODU: <b>@customerId</b></span>
+                        <ol class="breadcrumb web">
+                            <li><a href="/">Ana səhifə </a></li>
+                            <li class="active">İstifadəçi paneli</li>
+                        </ol>
+                    </div>
+                </div>
+                <div id="sticky-anchor"></div>
+                <div class="panel-page col-xs-12">
+                    <div class="row relative">
+                        <div class="col-md-3 col-sm-1 col-xs-1">
+                            <div class="block left-side">
+                                @*Left content navbar*@
+                                <ul class="left-sidebar" id="userPanelNavBar" data-acitve-page="@activePage">
+                                    <li class="active" >
+                                        <a asp-action="PanelPage" asp-controller="User" class="panel-img panel-nav-link" data-content="panel-main"><span>Panel səhifəsi</span></a>
+                                    </li>
+                                    <li class="nav-li" data-page="ForeignAddresses">
+                                        <a asp-controller="User" asp-action="ForeignAddresses" class="address panel-nav-link link-change" data-content="panel-foreign-address"><span>Xaricdəki ünvanlarım</span></a>
+                                    </li>
+                                    <li class="nav-li" data-page="Orders">
+                                        <a asp-action="Orders" asp-controller="User" class="basket panel-nav-link link-change" data-content="panel-orders"><span>Sifarişlərim</span></a>
+                                    </li>
+                                    <li class="nav-li" data-page="Packages">
+                                        <a asp-action="Packages" asp-controller="User" class="package panel-nav-link link-change" data-content="panel-packages"><span>Bağlamalarım</span></a>
+                                    </li>
+                                     
+                                    <li class="nav-li" data-page="AznBalance">
+                                        <a asp-action="AznBalance" asp-controller="User" class="coin panel-nav-link link-change" data-content="panel-azn-balance"><span>AZN Balansım</span></a>
+                                    </li>
+                                    <li class="nav-li" data-page="TlBalance">
+                                        <a asp-action="TlBalance" asp-controller="User" class="coin panel-nav-link link-change" data-content="panel-tl-balance"><span>TL Balansım</span></a>
+                                    </li>
+                                    <li class="nav-li" data-page="Courier">
+                                        <a asp-action="Courier" asp-controller="User" class="courier panel-nav-link link-change" data-content="panel-courier"><span>Kuryer</span></a>
+                                    </li>
+                                    <li class="nav-li" data-page="Question">
+                                        <a asp-action="Question" asp-controller="User" class="offer panel-nav-link link-change" data-content="panel-questions">
+                                            <span>
+                                                Sorğu
+                                                <span>(0)</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-li" data-page="Settings">
+                                        <a asp-action="Settings" asp-controller="User" class="settings panel-nav-link link-change" data-content="panel-settings"><span>Tənzimləmələr</span></a>
+                                    </li>
+                                     
+                                     
+                                    <li class="logout-li">
+                                        <form id="myform" method="post" asp-action="Logout" asp-controller="Account">
+                                            <!-- form elements -->
+                                            <a class="logout" onclick="$('#myform').submit()"><span>Hesabdan çıx</span></a>
+                                        </form>
+
+                                    </li>
+                                </ul>
+                            </div>
+                            @*Currency calculator*@
+                            <div id="currency" class="block price">
+                                <h4>Məzənnə kalkulyatoru</h4>
+
+                                <form id="currency-form">
+                                    <div class="input-group border-radius">
+                                        <input id="from"
+                                               type="number"
+                                               data-USD_AZN="0.0"
+                                               data-USD_TRY="0.0"
+                                               data-AZN_TRY="0.0"
+                                               data-AZN_USD="0.0"
+                                               data-TRY_AZN="0.0"
+                                               data-TRY_USD="0.0"
+                                               class="form-control"
+                                               placeholder="0.0" />
+                                        <div class="dropdown bootstrap-select form-control dropup">
+                                            <button type="button"
+                                                    class="btn dropdown-toggle btn-default"
+                                                    data-toggle="dropdown"
+                                                    role="button"
+                                                    data-id="from_currency">
+                                                <div class="filter-option">
+                                                    <div class="filter-option-inner">
+                                                        <div class="filter-option-inner-inner">AZN  </div>
+                                                    </div>
+                                                </div>
+                                             
+                                            </button>
+                                     
+                                            <div class="dropdown-menu open">
+                                                <div class="inner open"
+                                                     >
+                                                    <ul class="dropdown-menu inner currency-types">
+                                                        <li class="selected active">
+                                                            <a 
+                                                               class="selected active">
+                                                                <span class="glyphicon glyphicon-ok check-mark"></span><span class="text">AZN</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a >
+                                                                <span class="glyphicon glyphicon-ok check-mark"></span><span class="text">USD</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a >
+                                                                <span class="glyphicon glyphicon-ok check-mark"></span><span class="text">TRY</span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-group border-radius">
+                                        <input id="to"
+                                               type="number"
+                                               disabled
+                                               class="form-control"
+                                               placeholder="0.0" />
+                                        <div class="dropdown bootstrap-select form-control dropup">
+                                            <button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" role="button" data-id="from_currency" title="USD">
+                                                <div class="filter-option">
+                                                    <div class="filter-option-inner">
+                                                        <div class="filter-option-inner-inner">USD   </div>
+                                                    </div>
+                                                </div>
+                                              
+                                            </button>
+                                        
+                                            <div class="dropdown-menu open">
+                                                <div class="inner open" >
+                                                    <ul class="dropdown-menu inner currency-types">
+                                                        <li class="selected">
+                                                            <a  class="selected active"><span class="glyphicon glyphicon-ok check-mark"></span><span class="text">AZN</span></a>
+                                                        </li>
+                                                        <li class="">
+                                                            <a ><span class="glyphicon glyphicon-ok check-mark"></span><span class="text">USD</span></a>
+                                                        </li>
+                                                        <li class="active">
+                                                            <a ><span class="glyphicon glyphicon-ok check-mark"></span><span class="text">TRY</span></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <span>Günün məzənnəsinə uyğun hesablanır.</span>
+                            </div>
+                            @*Currency*@
+                            <div class="block daily web">
+                                <div>
+                                    <h4>Günlük məzənnə</h4>
+                                    <ul>
+                                        <li>
+                                            <img src="~/assets/images/flg-tr.png"
+                                                 alt="flg-tr" /><span>1</span><span>TL</span>
+                                        </li>
+                                        <li>
+                                            <img src="~/assets/images/flg-az.png"
+                                                 alt="flg-az" /><span id="TL_AZN">0.2177</span><span>AZN</span>
+                                        </li>
+                                        <li>
+                                            <img src="~/assets/images/flg-usa.png"
+                                                 alt="flg-usa" /><span id="TL_USD">0.1281</span><span>USD</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-11 mobile panel-button-top">
+                            <a asp-controller="User" asp-action="Order" class="btn-effect"> SİFARİŞ ET </a>
+                            <a asp-controller="User" asp-action="Declare" class="btn-effect blue"> BƏYAN ET </a>
+                        </div>
+                        @RenderBody()
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    @*Footer*@
+    <footer id="main-footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                        <img src="~/assets/images/logo-white.png" class="img-responsive" alt="logo-white">
+                        <p>
+                            "Limak VM" MMC&nbsp;sürətli poçtdaşıma və kuryer şirkətidir. Fiziki və hüquqi
+                            şəxslərin sifariş etdikləri yükləri xaricdəki anbarlarına qəbul edir, onların
+                            Azərbaycana daşınıb, müştəriyə təhvil verilməsini təmin edir.
+                        </p>
+                        <span class="follow-social">Bizi sosial şəbəkələrdən izləyin</span>
+                        <ul class="social-icons">
+                            <li><a target="_blank" href=""><img src="~/assets/images/facebook.png" alt="facebook"></a></li>
+                            <li><a target="_blank" href=""><img src="~/assets/images/instagram.png" alt="instagram"></a></li>
+                            <li><a target="_blank" href=""><img src="~/assets/images/twitter.png" alt="twitter"></a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <h4>Bölmələr</h4>
+                        <ul class="menu-list seperated">
+                            <li><a href="#">Ölkələr</a></li>
+                            <li><a href="#">Kalkulyator</a></li>
+                            <li><a href="#">Mağazalar</a></li>
+                            <li><a href="#">Haqqımızda</a></li>
+                            <li><a href="#">Gizlilik şərtləri</a></li>
+
+                            <li><a href="#">Əlaqə</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-2 col-sm-2 col-xs-12"></div>
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                        <ul class="text-right">
+                            <li class="tel">
+                                <a href="tel:*9595">*9595 <span>DƏSTƏK <br> XƏTTİ</span></a>
+                            </li>
+                            <li>
+                                Səbail rayonu, Mehdi Hüseyn küç. 94 <br>(İçərişəhər metrostansiyasının yaxınlığı və Təzə
+                                Bəy hamamının yanı) <br> Bakı/Azərbaycan
+                            </li>
+                            <li><span class="follow-social">Tezliklə</span></li>
+                            <li>
+                                <a href="" target="_blank">
+                                    <img src="~/assets/images/google-play.png" alt="google-play">
+                                </a>
+                                <a href="#"><img src="~/assets/images/appstore.png" alt="app-store"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <span>© 2018 Limak.az | Bütün hüquqlar qorunur</span>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12 text-right">
+                        <img src="~/assets/images/visa-logo.png" alt="visa" class="img-responsive">
+                        <img src="~/assets/images/master-card-logo.png" alt="master-card" class="img-responsive">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/owl-js.js"></script>
+    <script src="~/js/script.js"></script>
+    <script src="~/js/dropdown.js"></script>
+    <script src="~/js/menuJs.js"></script>
+    <script src="~/js/bootstrap.js"></script>
+    <script src="~/js/input-bootstrap.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="~/js/currencyCalculator.js"></script>
+    <script src="~/js/userPanelCurrencyCalc.js"></script>
+    <script src="~/js/userPanelLayout.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

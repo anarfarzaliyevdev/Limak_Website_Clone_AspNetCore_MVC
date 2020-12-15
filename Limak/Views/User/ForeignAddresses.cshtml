@@ -1,0 +1,161 @@
+﻿@inject SignInManager<ApplicationUser> signInManager;
+@inject UserManager<ApplicationUser> UserManager
+@{
+    ViewData["Title"] = "Packages";
+    Layout = "_UserPanelLayout";
+    var customerId = "";
+    var fullName = "";
+    @if (signInManager.IsSignedIn(User))
+    {
+        //Full name of user
+        fullName = UserManager.FindByNameAsync(User.Identity.Name).Result.FirstName + " " + UserManager.FindByNameAsync(User.Identity.Name).Result.LastName;
+        //Cutsomer id of user
+        customerId = UserManager.FindByNameAsync(User.Identity.Name).Result.CustomerId;
+    }
+}
+@section Styles{
+    <link rel="stylesheet" href="~/css/user-panel.css" />
+
+}
+<!-- Foreign-address -->
+<div class="col-md-9 col-sm-11 col-xs-11 order-body address panel-right" data-content="panel-foreign-address"
+     id="foreign-address">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="block">
+                <ul role="tablist" class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#turkey"
+                           data-toggle="tab"
+                           class="order-img1 active">Türkiyə</a>
+                    </li>
+                    <li class="">
+                        <a href="#usa"
+                           data-toggle="tab"
+                           class="order-img2">Amerika</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div id="turkey"
+                         class="tab-pane fade active in">
+                        <ul>
+                            <li>
+                                <b>Ad, Soyad</b>
+                                <p>
+                                    <span id="p1">
+                                        @customerId - LİMAK İTHALAT VE İHRACAT
+                                        LİMİTED
+                                    </span>
+                                    şirketi
+                                    <button class="btn">
+                                        <i class="fa fa-copy"></i> Copy
+                                    </button>
+                                </p>
+                            </li>
+                            <li>
+                                <b>Adres başlığı</b>
+                                <p>
+                                    <span id="p2">
+                                        LİMAK - @customerId - @fullName
+                                    </span>
+                                </p>
+                            </li>
+                            <li>
+                                <b>
+                                    Adres satır 1 (Müştəri kodu,ad və soyadınızla
+                                    birgə tam olaraq kopyalayın)
+                                </b>
+                                <p>
+                                    <span id="p3">
+                                        @customerId @fullName, Halkalı, 1.Tuna cd.
+                                        Üzümlü SK. 5a
+                                    </span><button class="btn">
+                                        <i class="fa fa-copy"></i> Copy
+                                    </button>
+                                </p>
+                            </li>
+                            <li>
+                                <b>İl-Şehir</b>
+                                <p>Istanbul</p>
+                            </li>
+                            <li>
+                                <b>İlçe</b>
+                                <p>Küçükçekmece</p>
+                            </li>
+                            <li>
+                                <b>Vergi dairesi</b>
+                                <p>Halkalı</p>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <b>Semt</b>
+                                <p>Halkalı</p>
+                            </li>
+                            <li>
+                                <b>ZIP/Post kodu</b>
+                                <p>34303</p>
+                            </li>
+                            <li>
+                                <b>Ülke</b>
+                                <p>Türkiye</p>
+                            </li>
+                            <li>
+                                <b>TC kimlik</b>
+                                <p>35650276048</p>
+                            </li>
+                            <li>
+                                <b>Cep telefon</b>
+                                <p>05364700021</p>
+                            </li>
+                            <li>
+                                <b>Vergi numarası</b>
+                                <p>6081089593</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="usa" class="tab-pane in">
+                        <ul>
+                            <li>
+                                <b>Name</b>
+                                <p>AZ @customerId @fullName</p>
+                            </li>
+                            <li>
+                                <b>Address Line</b>
+                                <p>28 W Ayre Street</p>
+                            </li>
+                            <li>
+                                <b>Address Line2</b>
+                                <p>Suite#AZ0072482</p>
+                            </li>
+                            <li>
+                                <b>State</b>
+                                <p>Delaware (DE)</p>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <b>City</b>
+                                <p>Wilmington</p>
+                            </li>
+                            <li>
+                                <b>ZIP/Postal code</b>
+                                <p>19804</p>
+                            </li>
+                            <li>
+                                <b>Country</b>
+                                <p>United States</p>
+                            </li>
+                            <li>
+                                <b>Phone Number</b>
+                                <p>800-4315119</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

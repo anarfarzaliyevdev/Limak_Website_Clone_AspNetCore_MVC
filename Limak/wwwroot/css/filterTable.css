@@ -1,0 +1,13 @@
+﻿.active-dropdown
+{
+    display:block !important;
+}
+.deactive-dropdown {
+    display: none !important;
+}
+.filter .invoice-address .select-tag-container #typeChange {
+    display: none;
+}
+.filter .dropdown-toggle{
+    cursor:pointer !important;
+}

@@ -1,0 +1,113 @@
+﻿@model CustomerEditOrderViewModel
+@{
+    ViewData["Title"] = "AddDeclare";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section Styles{
+    <link href="~/admin/css/userDetails.css" rel="stylesheet">
+}
+<div class="col-xl-12 order-xl-1">
+    <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <h3 class="mb-0">My account</h3>
+                </div>
+                <div class="col-4 text-right">
+                    <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <form asp-action="EditOrder" method="post" asp-controller="Customer">
+                <input asp-for="Id" type="hidden" id="input-id" class="form-control form-control-alternative" value="@Model.Id">
+                <input asp-for="UserId" type="hidden" id="input-id" class="form-control form-control-alternative" value="@Model.UserId">
+                <h6 class="heading-small text-muted mb-4">User information</h6>
+                <div class="pl-lg-4">
+                    <div class="row">
+                       
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-StoreName">Product Link</label>
+                                <input asp-for="ProductLink" id="input-StoreName" class="form-control form-control-alternative" value="@Model.ProductLink">
+                                <span asp-validation-for="ProductLink" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group focused">
+                                <label class="form-control-label" for="input-PackageProductType">Turkey Cargo Price</label>
+                                <input asp-for="TurkeyCargoPrice" type="text" id="input-PackageProductType" class="form-control form-control-alternative" value="@Model.TurkeyCargoPrice">
+                                <span asp-validation-for="TurkeyCargoPrice" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <hr class="my-4">
+                <!-- Address -->
+
+                <div class="pl-lg-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group focused">
+                                <label class="form-control-label" for="input-PackageProductNumber">Order Count</label>
+                                <input asp-for="OrderCount" min="0" id="input-PackageProductNumber" class="form-control form-control-alternative" value="@Model.OrderCount" type="number">
+                                <span asp-validation-for="OrderCount" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-country">Order Note</label>
+                                <textarea asp-for="OrderNote" type="text" id="input-postal-code" class="form-control form-control-alternative" value="@Model.OrderNote">
+
+</textarea>
+                                <span asp-validation-for="OrderNote" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-country">Price</label>
+                                <input asp-for="Price" step=".01" type="number" id="input-postal-code" class="form-control form-control-alternative" value="@Model.Price">
+                                <span asp-validation-for="Price" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-country">Weight with kg</label>
+                                <input asp-for="OrderWeight" step=".001" type="number" id="input-postal-code" class="form-control form-control-alternative" value="@Model.OrderWeight">
+                                <span asp-validation-for="OrderWeight" class="text-danger"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Delivery office</label>
+                                <select asp-for="@Model.Status" class="form-control" id="exampleFormControlSelect1">
+
+                                    <option>Sifariş verildi</option>
+                                    <option>Xaricdəki anbar</option>
+                                    <option>Yoldadır</option>
+                                    <option>Gömrük yoxlanışı</option>
+                                    <option>Bakı anbarı</option>
+                                    <option>Kuryer çatdırma</option>
+                                    <option>İade</option>
+                                    <option>Tamamlanmış</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-info" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+

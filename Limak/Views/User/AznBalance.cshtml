@@ -1,0 +1,218 @@
+﻿
+@model AznBalanceViewModel
+@{
+    ViewData["Title"] = "Packages";
+    Layout = "_UserPanelLayout";
+
+}
+@section Styles{
+    <link rel="stylesheet" href="~/css/user-panel.css" />
+    <link rel="stylesheet" href="~/css/filterTable.css" />
+}
+<!-- Azn Balance -->
+<div id="azn-balance"
+     class="col-md-9 col-sm-11 col-xs-11 coin panel-right" data-content="panel-azn-balance">
+    <div class="row relative">
+        <div class="balance-block col-md-5 col-sm-5 col-xs-12">
+            <div class="balance">
+                <img src="~/assets/images/balans-mob.png"
+                     alt="balans"
+                     class="img-responsive" />
+                <div class="balance-count">
+                    <span>Balansım</span>
+                    <br />
+                    <span class="count" id="myBalance">@Model.Balance.AZN <sup> ₼</sup></span>
+                </div>
+                <div class="balance-date">
+                    <span>Son əlavə tarixi</span>
+                    <br />
+
+                </div>
+                <div class="balance-text">
+                    Azərbaycana çatdırılma haqqının ödənilməsi və online
+                    kuryer sifarişi üçün balansınızı artıra bilərsiniz.
+                    <p>
+                        <b>ARTIRILAN BALANS GERİ QAYTARILMIR.</b>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7 col-sm-7 col-xs-12 right-side">
+            <div class="right-top block">
+                <h4>ÖDƏNİŞ ÜÇÜN BALANS ARTIMI</h4>
+                <form id="increase-balance">
+                    <div class="input-group border-radius">
+                        <label class="lbl_pay">
+                            <input placeholder=" "
+                                   required="required"
+                                   type="number"
+                                   name="new_amount"
+                                   id="increase-azn-balance-usd"
+                                   class="form-control inputText" />
+                            <span>Məbləğ USD</span>
+                        </label>
+                        <label class="lbl_pay">
+                            <input placeholder=" "
+                                   required="required"
+                                   type="number"
+                                   name="amount"
+                                   readonly="readonly"
+                                   id="increase-azn-balance-azn"
+                                   class="form-control inputText" />
+                            <span>Məbləğ AZN</span>
+                        </label>
+                        <button type="submit"
+                                class="border-btn btn-effect btn_pay">
+                            Balansı artır
+                        </button>
+                    </div>
+                </form>
+                <span class="range-count">min: 1 USD</span>
+                <div class="card_logolist">
+                    <img src="~/assets/images/millikart.png"
+                         alt=" millikart" />
+                    <img src="~/assets/images/visa-logo-master.png"
+                         alt=" visa" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row increase-balance">
+        <div class="col-xs-12">
+            <div class="block">
+                <div class="col-md-10 col-sm-9 col-xs-9">
+                    <h4>
+                        Milli Ön üzərindən balansınızı artırın
+                    </h4>
+                    <form action="">
+                        <div class="input-group border-radius">
+                            <label>
+                                <input type="text"
+                                       name="code"
+                                       placeholder=" "
+                                       readonly="readonly"
+                                       class="form-control inputText"
+                                       value="234212" />
+                                <p>Hesab Nömrəsi:</p>
+                            </label>
+                        </div>
+                    </form>
+                    <p>
+                        MilliÖN terminalına yaxınlaşırsınız, "Çatdırılma
+                        xidməti" bölməsinə daxil olub, "Limak.az" bölməsinə
+                        keçid edirsiniz. Daşınma və kuryer xidmət haqqını
+                        ödəyə bilmək üçün "limak.az AZN" xanasını
+                        seçirsiniz. Açılan xanada yuxarıdakı hesab nömrənizi
+                        yığaraq "davam et" düyməsini sıxırsınız. Çatdırılma
+                        və kuryer xidməti üçün lazım olan məbləği daxil edib
+                        təsdiqləyirsiniz. Əməliyyatı bitirdikdən sonra
+                        məbləğ dərhal limak.az saytındakı şəxsi kabinetdəki
+                        balansınızda görünəcək.
+                        <br /><br />
+                        Qeyd: Çatdırılma balansı ilə Türkiyədən alış-veriş
+                        etmək mümkün deyil! AZN balansından TRY balansına
+                        pul transferi mümkün deyil!
+                    </p>
+                </div>
+                <div class="col-md-2 col-sm-3 col-xs-3">
+                    <img src="~/assets/images/terminal.png"
+                         alt="terminal"
+                         class="img-responsive center-block" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 basket">
+            <div class="order-body">
+                <div class="block">
+                    <div class="coin-table ">
+                        <div class="select-all ">
+                            <div class="filter">
+                                <span>Filter</span>
+                                <div class="invoice-address input-group border-radius">
+                                    <div class="dropdown select-tag-container single searchable">
+                                        <div class="dropdown-toggle">
+                                            <div class="select-tag-options">
+                                                <span class="selected-tag">
+                                                    Hamısı
+                                                </span>
+
+                                            </div>
+                                            <div class="indicator-container">
+
+                                                <i class="open-indicator"></i>
+
+                                            </div>
+                                        </div>
+                                        <ul class="internal-cargo dropdown-menu deactive-dropdown" id="typeChange">
+                                            <li data-value="0">
+                                                <a>Hamısı</a>
+                                            </li>
+                                            <li data-value="1">
+                                                <a> Mədaxil</a>
+                                            </li>
+                                            <li data-value="1">
+                                                <a> Məxaric</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="right-side ">
+                                <button type="button"
+                                        class="transparent" id="saveExcelBtn">
+                                    <img src="~/assets/images/excel.png"
+                                         alt="excel" />
+                                    <span>Excel faylda yaddaşa ver</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="scrollable-table">
+                            <table class="table table-bordered saveExcelTable" id="AznOpreations">
+                                <thead>
+                                    <tr>
+                                        <th>Əməliyyat</th>
+                                        <th>Məbləğ</th>
+                                        <th>Tarix</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.Operations.Count > 0)
+                                    {
+                                        @foreach (var operation in Model.Operations)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @operation.Type
+                                                </td>
+                                                <td>
+                                                    @operation.Amount
+                                                </td>
+                                                <td>
+                                                    @operation.Date
+                                                </td>
+                                            </tr>
+
+                                        }
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script src="~/js/aznBalance.js"></script>
+    <script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js">
+    </script>
+    <script src="~/js/saveExcel.js"></script>
+    <script src="~/js/filterTable.js"></script>
+   
+}

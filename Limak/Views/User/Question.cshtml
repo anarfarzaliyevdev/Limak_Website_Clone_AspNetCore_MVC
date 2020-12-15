@@ -1,0 +1,159 @@
+﻿
+@{
+    ViewData["Title"] = "Question";
+    Layout = "_UserPanelLayout";
+}
+@section Styles{
+
+    <link rel="stylesheet" href="~/css/user-panel.css" />
+    <link rel="stylesheet" href="~/css/questions.css" />
+}
+<!-- Panel Questions -->
+<div class="col-md-9 col-sm-11 col-xs-11 offer courier panel-right" data-content="panel-questions">
+    <div class="row">
+        <div class="col-xs-12 courier-log">
+            <div class="block col-xs-12">
+                <h3>Sorğu</h3>
+                <div class="form-list-offer">
+                    <form enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="input-group">
+                                    <label class="select-class">Başlıq *</label>
+                                    <select class="form-control">
+                                        <option value="0"> --Seç-- </option>
+                                        <option value="5">Gecikən sifariş</option>
+                                        <option value="7">Mənə aid olmayan bağlama</option>
+                                        <option value="9">Kuryer</option>
+                                        <option value="3">Şikayət və təklif</option>
+                                        <option value="1">Digər</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <input type="file" accept="image/*" id="file1" multiple onchange="loadFile(event)">
+                            </div>
+                            <div class="col-md-12 box ">
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="input-group border-radius">
+                                    <textarea name="notice" rows="8"
+                                              class="form-control" placeholder="Qeyd"></textarea>
+                                    <p></p>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 button-part">
+                                <button type="submit" class="btn-effect">Göndər</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="block follow-order order-body col-xs-12 query-div">
+                <div class="div-inline-block query">
+                    <a href="#" class="router-link-exact-active router-link-active">Sorğu</a>
+                </div>
+                <div class="div-inline-block comp-query">
+                    <a href="#" class="">
+                        Tamamlanmış Sorğu
+                    </a>
+                </div>
+            </div>
+            <div class="block follow-order order-body col-xs-12">
+                <div class="right-content ">
+                    <div class="quiz properties">
+                        <div class="quiz-inner col-xs-12">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <div class="offer-search">
+                                        <form action="...">
+                                            <div class="icon-addon addon-lg">
+                                                <input type="text" name="search"
+                                                       id="email" class="form-control" placeholder="Axtarış"> <span>
+                                                    <i class="fa fa-search"></i>
+                                                </span>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="offer-quiz"></div>
+                                </div>
+                                <div class="col-md-8 col-sm-8 col-xs-12 right2">
+                                    <div class="row">
+                                        <div class="chat-part col-xs-12">
+                                            <div class="row right-border">
+                                                <div class="col-lg-6 col-md-7 col-sm-7 col-xs-6">
+                                                    <div class="offer-upload">
+                                                        <h5></h5>
+                                                    </div>
+                                                    <div id="exampleModal" 
+                                                         class="modal fade">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 id="exampleModalLabel" class="modal-title">
+                                                                        Sorğunuzu bitirmək üçün səbəb qeyd edin
+                                                                    </h5>
+                                                                    <button type="button" data-dismiss="modal"
+                                                                            class="close">
+                                                                        <span>×</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleFormControlTextarea1">
+                                                                            Sorğunuzu
+                                                                            bitirmək üçün səbəb qeyd edin
+                                                                        </label>
+                                                                        <textarea id="exampleFormControlTextarea1"
+                                                                                  rows="3"
+                                                                                  class="form-control"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button"
+                                                                            data-dismiss="modal"
+                                                                            class="btn btn-secondary">
+                                                                        Bağla
+                                                                    </button>
+                                                                    <button type="button"
+                                                                            class="btn btn-primary">
+                                                                        Sorğunu
+                                                                        Bitir
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-5 col-sm-5 col-xs-6 text-right">
+                                                    <div class="offer-date">
+                                                        <span>
+                                                            <i class="fa fa-calendar"></i>
+                                                            7/10/2020
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="quiz-right">
+                                                <div class="back-left mobile-xs">
+                                                    <span>
+                                                        <i class="fa fa-angle-left"></i>Geri
+                                                    </span>
+                                                </div>
+                                                <div class="chat"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/js/question.js"></script>
+
+ }

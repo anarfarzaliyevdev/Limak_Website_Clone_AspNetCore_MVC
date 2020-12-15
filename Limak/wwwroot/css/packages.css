@@ -1,0 +1,310 @@
+﻿
+.table-list {
+    display: block;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.block-border tr td p {
+    font-size: 13px;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 0;
+}
+
+    .block-border tr td p span {
+        font-weight: normal;
+        font-size: 13px;
+    }
+
+.package .block-border tr td {
+    vertical-align: middle;
+    width: 18%;
+}
+
+    .package .block-border tr td:last-child {
+        width: 27%;
+    }
+
+.package .block-border td .btn-effect {
+    width: 53px;
+    padding: 4px;
+    font-size: 14px;
+}
+
+.block-border td .follow_order {
+    background: #058fff;
+    border-color: #058fff;
+    padding-left: 20px;
+    position: relative;
+    width: 100% !important;
+}
+
+
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    display: none;
+    overflow: hidden;
+    outline: 0;
+}
+
+.show {
+    display: block !important;
+}
+
+.fade.in {
+    opacity: 1;
+}
+
+.modal.in .modal-dialog {
+    transform: translate(0,0);
+}
+
+.follow .modal-dialog {
+    width: 872px;
+}
+
+.modal-dialog {
+    position: relative;
+    width: auto;
+    margin: 10px;
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #999;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 6px;
+    outline: 0;
+    box-shadow: 0 3px 9px rgba(0,0,0,.5);
+}
+
+.modal-header {
+    padding: 15px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.close {
+    float: right;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .2;
+}
+
+.follow .close {
+    opacity: 1;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.table-responsive {
+    min-height: .01%;
+    overflow-x: auto;
+}
+
+.follow .table {
+    width: 90%;
+}
+
+.package .block-border .table {
+    margin-bottom: 0;
+    border-top: none;
+}
+
+.modal-body {
+    position: relative;
+    padding: 15px;
+}
+
+.package .follow .follow-order .follow-line {
+    padding: 0;
+}
+
+.block-border ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0;
+    display: flex;
+}
+
+.follow-order .follow-line li span {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 58px 0 10px;
+    position: relative;
+    z-index: 99;
+}
+
+.follow-order .follow-line .shopping-bag {
+    background: url(../assets/images/shopping-bag.png) no-repeat center #ebebeb;
+}
+
+.follow-order .follow-line .order-follow {
+    background: url(../assets/images/order.png) no-repeat center #ebebeb;
+}
+
+.follow-order .follow-line li.active .order-follow {
+    background: url(../assets/images/order.png) no-repeat center #058fff;
+}
+
+.follow-order .follow-line .departures {
+    background: url(../assets/images/departures.png) no-repeat center #ebebeb;
+}
+
+.follow-order .follow-line li.active .departures {
+    background: url(../assets/images/departures.png) no-repeat center #058fff;
+}
+
+.follow-order .follow-line .warehouse {
+    background: url(../assets/images/warehouse.png) no-repeat center #ebebeb;
+}
+
+.follow-order .follow-line li.active .warehouse {
+    background: url(../assets/images/warehouse.png) no-repeat center #058fff;
+}
+
+.follow-order .follow-line .shipped {
+    background: url(../assets/images/shipped.png) no-repeat center #ebebeb;
+}
+
+.follow-order .follow-line li.active .shipped {
+    background: url(../assets/images/shipped.png) no-repeat center #058fff;
+}
+
+.follow-order .follow-line .package {
+    background: url(../assets/images/package-panel.png) no-repeat center #ebebeb;
+}
+
+.follow-order .follow-line li.active .package {
+    background: url(../assets/images/package-w.png) no-repeat center #058fff;
+}
+
+.follow-order .follow-line li.active span {
+    box-shadow: 0 7px 17.85px 1.15px rgba(0, 0, 0, .1);
+    background-color: #058fff;
+}
+
+.follow .follow-order .follow-line li span {
+    margin: 0 45px 0 14px;
+}
+
+.follow .follow-order .follow-line li p {
+    font-size: 14px;
+}
+
+    .follow .follow-order .follow-line li p:last-child {
+        display: block;
+        text-align: left;
+    }
+
+.follow-order .follow-line li p b {
+    display: block;
+}
+
+.follow-order .follow-line li span:before {
+    content: '';
+    border: 1px dashed #c8c8c8;
+    height: 0;
+    width: 70px;
+    position: absolute;
+    top: 50%;
+    left: 48px;
+    z-index: 9;
+    transform: translateY(-50%);
+}
+
+.follow-order .follow-line li.active span:before {
+    border-color: #058fff;
+}
+
+.follow-order .follow-line li.active span:after {
+    content: '';
+    width: 16px;
+    height: 16px;
+    background: #058fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 72px;
+    transform: translateY(-50%);
+}
+
+.fade {
+    opacity: 0;
+    transition: opacity .15s linear;
+}
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    background-color: #000;
+}
+
+    .modal-backdrop.in {
+        opacity: .4;
+    }
+
+@media only screen and (min-width: 768px) {
+    .modal-dialog {
+        width: 600px;
+        margin: 30px auto;
+    }
+
+    .modal-content {
+        box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    }
+}
+
+.follow-order .follow-line {
+    padding: 8px 0px;
+}
+
+    .follow-order .follow-line ul {
+        padding: 0px;
+    }
+
+table .check-button .checkmark {
+    top: -9px;
+}
+
+.btn-effect.green {
+    background: #00a651;
+    border-color: #00a651;
+}
+
+.btn-effect.red {
+    background: #ff0000;
+    border-color: #ff0000;
+}
+
+.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+    border-top: none;
+}
+
+.edit .modal-header {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+    .edit .modal-header .close {
+        margin-top: -34px;
+        opacity: 1 !important;
+    }

@@ -1,0 +1,22 @@
+﻿#allValMess ul {
+    list-style: none;
+}
+
+    #allValMess ul li {
+        font-size: 15px;
+    }
+
+.text-danger {
+    font-size: 13px;
+}
+.display-block {
+    display: inline-block !important;
+}
+
+.display-none {
+    display: none !important;
+}
+.text-danger {
+    color: #f95732;
+    font-size: 14px !important;
+}

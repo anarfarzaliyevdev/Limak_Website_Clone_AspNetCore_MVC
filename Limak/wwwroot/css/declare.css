@@ -1,0 +1,17 @@
+#month-day{
+    max-height: 400px;
+}
+.select-tag-container .dropdown-menu{
+    display: none;
+}
+.dropdown-menu-active{
+    
+}
+.alertborder {
+    border: 2px solid red;
+}
+
+.alertptag {
+    color: red;
+    display: none;
+}

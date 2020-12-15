@@ -1,0 +1,59 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+    
+}
+
+<section class="sign-in invoice content">
+    <div class="container">
+        <div class="container">
+            <div class="row">
+                <div class="invoice-head col-xs-12">
+                    <div class="col-md-4 col-sm-5 col-xs-6">
+                        <h4>Daxil ol </h4>
+                    </div>
+                    <div class="col-md-8 col-sm-7 col-xs-6">
+                        <ol class="breadcrumb web">
+                            <li><a href="">Ana səhifə </a></li>
+                            <li class="active"> Daxil ol</li>
+                        </ol>
+                        <ol class="breadcrumb mobile">
+                            <li><a href="">... </a></li>
+                            <li class="active">Daxil ol</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>        <div class="block">
+            <form method="POST" asp-action="Login" asp-route-returnUrl="@Model.ReturnUrl">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-12">
+                        <div class="login-block">
+                            <div class="input-group border-radius">
+                                <label for="email-log">E-mail</label>
+                                <input type="email" asp-for="Email" class="form-control inputText " value="" required="" placeholder="E-mail" id="email-log">
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="input-group border-radius">
+                                <label for="password">Şifrə</label>
+                                <input type="password" asp-for="Password" class="form-control inputText " placeholder="Şifrə" id="password">
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                            <button type="submit" class="btn-effect">Daxil ol</button>
+                            <div class="checkbox">
+                                <label>
+                                    <input id="checkbox1"  type="checkbox" asp-for="RememberMe"><span></span>
+                                    Məni xatırla
+                                </label>
+                            </div>
+                        </div>
+                        <div class="login-footer">
+                            <a asp-action="ForgetPassword" asp-controller="Account" class="shifre">Şifrəni unutmusunuz?</a>
+                            <a asp-action="Register" asp-controller="Account">QEYDİYYAT</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

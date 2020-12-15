@@ -1,0 +1,198 @@
+﻿
+@{
+    ViewData["Title"] = "Packages";
+    Layout = "_UserPanelLayout";
+}
+@section Styles{
+    <link rel="stylesheet" href="~/css/user-panel.css" />
+    <link rel="stylesheet" href="~/css/packages.css" />
+}
+<!-- Orders -->
+<div class="col-md-9 col-sm-11 col-xs-11 basket package panel-right" data-content="panel-orders"
+     id="order">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="block">
+                <div class="block-head">
+                    <h3>Sifarişlərim</h3>
+                    <ul  class="nav navbar-nav navbar-right packages-filter">
+                         
+                        <li class="dropdown">
+                            <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="drop-link">
+                                <span class="badge"></span><span class="filter-current-status"></span><i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul aria-labelledby="dropdownMenu2" class="dropdown-menu filter-status" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 30px, 0px);">
+                                <li><a><span class="order-status">Hamısı </span><span class="badge" data-badge-status="Hamısı">0</span></a></li>
+                                <li><a><span class="order-status">Sifariş verildi </span><span class="badge" data-badge-status="Sifariş verildi">0</span></a></li>
+                                <li><a><span class="order-status">Xaricdəki anbar  </span><span class="badge" data-badge-status="Xaricdəki anbar">0</span></a></li>
+                                <li><a><span class="order-status">Yoldadır </span><span class="badge" data-badge-status="Yoldadır">0</span></a></li>
+                                <li><a><span class="order-status">Gömrük yoxlanışı </span><span class="badge" data-badge-status="Gömrük yoxlanışı">0</span></a></li>
+                                <li><a><span class="order-status">Bakı anbarı </span><span class="badge" data-badge-status="Bakı anbarı">0</span></a></li>
+                                <li><a><span class="order-status">Kuryer çatdırma </span><span class="badge" data-badge-status="Kuryer çatdırma">0</span></a></li>
+                                <li><a><span class="order-status">İade </span><span class="badge" data-badge-status="İade">0</span></a></li>
+                                <li><a><span class="order-status">Tamamlanmış </span><span class="badge" data-badge-status="Tamamlanmış">0</span></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="block-inner">
+                    <div class="block-border scrollable-table">
+                        <div class="table-list">
+                          
+                                <table class="table table-bordered table-responsive">
+                                    <tbody id="order-records">
+                                        @if (Model.Orders.Count > 0)
+                                        {
+                                            @for (int i = 0; i < Model.Orders.Count; i++)
+                                            {
+
+                                                <tr data-orderId="@Model.Orders[i].Id" data-order-status="@Model.Orders[i].Status">
+                                                    <td><p>Məhsul linki <br><span>@Model.Orders[i].ProductLink</span></p></td>
+                                                    <td><p>Status<br><span>@Model.Orders[i].Status </span></p></td>
+                                                    <td>
+                                                        <button type="button" class="btn-effect buttonlook">
+                                                            Bax
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr class="looksection">
+                                                    <td class="product"><p>Məhsulun sayı<br><span>@Model.Orders[i].OrderCount</span></p> <p>Çəkisi<br><span>@Model.Orders[i].OrderWeight kq</span></p></td>
+                                                    <td><p>Çatdırılma qiyməti<br><span>@Model.Orders[i].OrderCargoPrice</span></p></td>
+                                                    <td>
+                                                        <p>
+                                                            Qiymət<br><span> @Model.Orders[i].Price<span>TL</span> </span>
+                                                        </p>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <button type="button" data-toggle="modal" data-target="#myModal" class="btn-effect follow_order" style="width: 100% !important;">
+                                                            Sifarişi izlə
+                                                        </button>
+                                                    </td>
+                                                </tr>
+
+
+
+                                            }
+
+                                        }
+                                    </tbody>
+                                </table>
+                           
+                        </div>
+
+                        <div id="myModal"  role="dialog" aria-labelledby="myModalLabel" class="modal fade follow " aria-modal="true">
+                            <div role="document" class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <table class="table table-responsive">
+                                            <tbody>
+                                                <tr>
+                                                    <td><p>Məhsul linki <br><span class="modalProductLink"></span></p></td>
+                                                    <td><p>Status<br><span class="modalStatus"> </span></p></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <button type="button" data-dismiss="modal" aria-label="Close" class="close">
+                                            <img src="~/assets/images/error.png" alt="error">
+                                        </button>
+                                    </div>
+                                    <div class="modal-body follow-order">
+                                        <div class="follow-line">
+                                            <ul id="status-modal-ul">
+                                                <li class="" data-status="Sifariş verildi"><span class="shopping-bag"></span> <p><b>Sifariş verildi</b><b class="statusDate"></b></p></li>
+                                                <li class="" data-status="Xaricdəki anbar"><span class="order-follow"></span> <p><b>Xaricdəki anbar</b><b class="statusDate"></b></p></li>
+                                                <li class="" data-status="Yoldadır"><span class="departures"></span> <p><b>Yoldadır</b><b class="statusDate"></b></p></li>
+                                                <li class="" data-status="Gömrük yoxlanışı"><span class="warehouse"></span> <p><b>Gömrük yoxlanışı</b><b class="statusDate"></b></p></li>
+                                                <li class="" data-status="Bakı anbarı"><span class="warehouse"></span> <p><b>Bakı anbarı</b><b class="statusDate"></b></p> </li>
+                                                <li class="" data-status="Kuryer çatdırma"><span class="shipped"></span> <p><b>Kuryer çatdırma</b><b class="statusDate"></b></p></li>
+                                                <li class="" data-status="İade"><span class="shipped"></span> <p><b>İade</b><b class="statusDate"></b></p></li>
+                                                <li class="" data-status="Tamamlanmış"><span class="package"></span> <p><b>Tamamlanmış</b><b class="statusDate"></b></p></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                 
+                </div>
+                <div class="select-all">
+                    <div class="right-side mobile-ex">
+                        <button type="button"
+                                class="transparent">
+                            <img src="~/assets/images/excel.png"
+                                 alt="excel" />
+                            <span>Yaddaşa ver</span>
+                        </button>
+                    </div>
+                    <hr />
+                </div>
+                <div id="edit_data"
+                     
+                     class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button"
+                                        data-dismiss="modal"
+                                        class="close">
+                                    <span>
+                                        <img src="~/assets/images/close-menu.png"
+                                             alt="close" />
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="input-group border-radius">
+                                    <span>Qiymət</span>
+                                </div>
+                                <div class="input-group border-radius">
+                                    <label>
+                                        <input type="text"
+                                               name="link"
+                                               placeholder=" "
+                                               class="form-control inputText" />
+                                        <span>Sifarişin linki</span>
+                                    </label>
+                                </div>
+                                <div class="input-group border-radius">
+                                    <label>
+                                        <input type="text"
+                                               name="count"
+                                               placeholder=" "
+                                               class="form-control inputText" />
+                                        <span>Say</span>
+                                    </label>
+                                </div>
+                                <div class="input-group border-radius">
+                                    <label>
+                                        <input type="text"
+                                               name="size"
+                                               placeholder=" "
+                                               class="form-control inputText" />
+                                        <span>Ölçü</span>
+                                    </label>
+                                </div>
+                                <div class="modal-button text-right">
+                                    <button data-dismiss="modal"
+                                            class="btn-effect">
+                                        Yadda saxla
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/orders.js"></script>
+    <script src="~/js/orderStatusAjaxPost.js"></script>
+    
+}
+

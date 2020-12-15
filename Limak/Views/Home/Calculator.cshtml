@@ -1,0 +1,467 @@
+﻿@model CalculatorViewModel
+@{
+    ViewData["Title"] = "Calculator";
+
+}
+@section Styles{
+    <link rel="stylesheet" href="~/css/calculatorPage.css" />
+    <link rel="stylesheet" href="~/css/user-panel.css" />
+}
+
+<section class="calculator brands content">
+    <div class="container">
+        <div class="row">
+            <div class="invoice-head col-xs-12">
+                <div class="col-md-4 col-sm-5 col-xs-6">
+                    <h4>KALKULYATOR</h4>
+                </div>
+                <div class="col-md-8 col-sm-7 col-xs-6">
+                    <ol class="breadcrumb web">
+                        <li><a href="">Ana səhifə </a></li>
+                        <li class="active">KALKULYATOR</li>
+                    </ol>
+                    <ol class="breadcrumb mobile">
+                        <li><a href="">... </a></li>
+                        <li class="active">KALKULYATOR</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="news-body">
+        <div class="container">
+            <div class="row relative">
+                <div class="col-md-5 col-sm-12 col-xs-12">
+                    <div class="calculator-left">
+                        <div class="left-top">
+                            <div class="block">
+                                <h4>
+                                    Kalkulyator
+                                    <span id="reset-calc">Kalkulyatoru sıfırla</span>
+                                </h4>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="input-group">
+                                            <div class="dropdown bootstrap-select form-control">
+
+                                                <button type="button"
+                                                        class="btn dropdown-toggle btn-default"
+                                                        data-toggle="dropdown">
+                                                    <div class="filter-option">
+                                                        <div class="filter-option-inner">
+                                                            <div class="filter-option-inner-inner">
+                                                                Türkiyə
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </button>
+                                                <div class="dropdown-menu open">
+                                                    <div class="inner open">
+                                                        <ul class="dropdown-menu inner country">
+                                                            <li class="selected active">
+                                                                <a class="selected active">
+                                                                    <span class="text">Türkiyə</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a> <span class="text">Amerika</span></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+                                            <label>
+                                                <input type="number"
+                                                       min="0"
+                                                       class="form-control inputText"
+                                                       id="weight"
+                                                       placeholder=" " />
+                                                <span>Çəki</span>
+                                            </label>
+                                            <div class="input-group-btn">
+                                                <div class="dropdown bootstrap-select form-control">
+
+                                                    <button type="button"
+                                                            class="btn dropdown-toggle btn-default"
+                                                            data-toggle="dropdown"
+                                                            title="qram">
+                                                        <div class="filter-option">
+                                                            <div class="filter-option-inner">
+                                                                <div id="filter-weight"
+                                                                     class="filter-option-inner-inner">
+                                                                    qram
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </button>
+                                                    <div class="dropdown-menu open">
+                                                        <div class="inner open">
+                                                            <ul class="dropdown-menu inner">
+                                                                <li class="">
+                                                                    <a class="">
+                                                                        <span class="text">kq</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="selected active">
+                                                                    <a class="selected active">
+                                                                        <span class="text">qram</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+                                            <label>
+                                                <input type="number"
+                                                       min="0"
+                                                       name="width"
+                                                       id="width"
+                                                       class="form-control inputText"
+                                                       placeholder=" " />
+                                                <span>En</span>
+                                            </label>
+                                            <div class="input-group-btn">
+                                                <div class="dropdown bootstrap-select form-control dropup">
+
+                                                    <button type="button"
+                                                            class="btn dropdown-toggle btn-default"
+                                                            data-toggle="dropdown"
+                                                            title="m">
+                                                        <div class="filter-option">
+                                                            <div class="filter-option-inner">
+                                                                <div id="filter-width"
+                                                                     class="filter-option-inner-inner">
+                                                                    m
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </button>
+                                                    <div class="dropdown-menu open">
+                                                        <div class="inner open">
+                                                            <ul class="dropdown-menu inner">
+                                                                <li class="selected active">
+                                                                    <a class="selected active">
+                                                                        <span class="text">sm</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="selected">
+                                                                    <a class="selected"><span class="text">m</span></a>
+                                                                </li>
+                                                                <li>
+                                                                    <a><span class="text">dm</span></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+                                            <label>
+                                                <input type="number"
+                                                       min="0"
+                                                       class="form-control inputText"
+                                                       name="height"
+                                                       id="height"
+                                                       placeholder=" " />
+                                                <span>Hündürlük</span>
+                                            </label>
+                                            <div class="input-group-btn">
+                                                <div class="dropdown bootstrap-select form-control">
+                                                    <button type="button"
+                                                            class="btn dropdown-toggle btn-default"
+                                                            data-toggle="dropdown"
+                                                            title="sm">
+                                                        <div class="filter-option">
+                                                            <div class="filter-option-inner">
+                                                                <div id="filter-height"
+                                                                     class="filter-option-inner-inner">
+                                                                    sm
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </button>
+                                                    <div class="dropdown-menu open">
+                                                        <div class="inner open">
+                                                            <ul class="dropdown-menu inner">
+                                                                <li class="selected active">
+                                                                    <a class="selected active">
+                                                                        <span class="text">sm</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a><span class="text">m</span></a>
+                                                                </li>
+                                                                <li>
+                                                                    <a><span class="text">dm</span></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="input-group">
+                                            <div class="dropdown bootstrap-select form-control">
+
+                                                <button type="button"
+                                                        class="btn dropdown-toggle btn-default"
+                                                        data-toggle="dropdown">
+                                                    <div class="filter-option">
+                                                        <div class="filter-option-inner">
+                                                            <div class="filter-option-inner-inner">
+                                                                Bakı
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </button>
+                                                <div class="dropdown-menu open">
+                                                    <div class="inner open">
+                                                        <ul class="dropdown-menu inner">
+                                                            <li class="selected active">
+                                                                <a class="selected active"><span class="text">Bakı</span></a>
+                                                            </li>
+                                                            <li>
+                                                                <a><span class="text">Gəncə</span></a>
+                                                            </li>
+                                                            <li>
+                                                                <a><span class="text">Sumqayıt</span></a>
+                                                            </li>
+                                                            <li>
+                                                                <a><span class="text">Zaqatala</span></a>
+                                                            </li>
+                                                         
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group border-radius">
+                                            <label>
+                                                <input type="number"
+                                                       min="0"
+                                                       id="count"
+                                                       class="form-control inputText"
+                                                       placeholder=" " />
+                                                <span>Bağlama sayı</span>
+                                            </label>
+                                        </div>
+                                        <div class="input-group">
+                                            <label>
+                                                <input type="number"
+                                                       min="0"
+                                                       class="form-control inputText"
+                                                       id="length"
+                                                       placeholder=" " />
+                                                <span>Uzunluq</span>
+                                            </label>
+                                            <div class="input-group-btn">
+                                                <div class="dropdown bootstrap-select form-control">
+
+                                                    <button type="button"
+                                                            class="btn dropdown-toggle btn-default"
+                                                            data-toggle="dropdown">
+                                                        <div class="filter-option">
+                                                            <div class="filter-option-inner">
+                                                                <div id="filter-length"
+                                                                     class="filter-option-inner-inner">
+                                                                    sm
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </button>
+                                                    <div class="dropdown-menu open">
+                                                        <div class="inner open">
+                                                            <ul class="dropdown-menu inner">
+                                                                <li class="selected active">
+                                                                    <a class="selected active">
+                                                                        <span class="text">sm</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a> <span class="text">m</span></a>
+                                                                </li>
+                                                                <li>
+                                                                    <a> <span class="text">dm</span></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <button id="calculate-btn"
+                                                        class="btn-effect border-btn">
+                                                    Hesabla
+                                                </button>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <p class="count">
+                                                    Cəmi: <b class="count-result">$0,00</b>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="left-bottom">
+                            <div id="currency" class="block price">
+                                <h4>Məzənnə kalkulyatoru</h4>
+
+                                <form id="currency-form">
+                                    <div class="input-group border-radius">
+                                        <input id="from"
+                                               min="0"
+                                               type="number"
+                                               data-USD_AZN="@Model.USD_AZN"
+                                               data-USD_TRY="@Model.USD_TRY"
+                                               data-AZN_TRY="@Model.AZN_TRY"
+                                               data-AZN_USD="@Model.AZN_USD"
+                                               data-TRY_AZN="@Model.TRY_AZN"
+                                               data-TRY_USD="@Model.TRY_USD"
+                                               class="form-control"
+                                               placeholder="0.0" />
+                                        <div class="dropdown bootstrap-select form-control dropup">
+                                            <button type="button"
+                                                    class="btn dropdown-toggle btn-default"
+                                                    data-toggle="dropdown"
+                                                    data-id="from_currency"
+                                                    title="AZN">
+                                                <div class="filter-option">
+                                                    <div class="filter-option-inner">
+                                                        <div class="filter-option-inner-inner">AZN</div>
+                                                    </div>
+                                                </div>
+
+                                            </button>
+                                            <div class="dropdown-menu open">
+                                                <div class="inner open"
+                                                     >
+                                                    <ul class="dropdown-menu inner currency-types">
+                                                        <li class="selected active" >
+                                                            <a 
+                                                               class="selected active">
+                                                                <span class="glyphicon glyphicon-ok check-mark"></span><span class="text">AZN</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a >
+                                                                <span class="glyphicon glyphicon-ok check-mark"></span><span class="text">USD</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a >
+                                                                <span class="glyphicon glyphicon-ok check-mark"></span><span class="text">TRY</span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-group border-radius">
+                                        <input id="to"
+                                               min="0"
+                                               type="number"
+                                               disabled
+                                               class="form-control"
+                                               placeholder="0.0" />
+                                        <div class="dropdown bootstrap-select form-control dropup">
+                                            <button type="button"
+                                                    class="btn dropdown-toggle btn-default"
+                                                    data-toggle="dropdown"
+                                                    data-id="to_currency"
+                                                    title="USD">
+                                                <div class="filter-option">
+                                                    <div class="filter-option-inner">
+                                                        <div class="filter-option-inner-inner">USD</div>
+                                                    </div>
+                                                </div>
+
+                                            </button>
+                                            <div class="dropdown-menu open">
+                                                <div class="inner open"
+                                                     >
+                                                    <ul class="dropdown-menu inner currency-types">
+                                                        <li>
+                                                            <a >
+                                                                <span class="glyphicon glyphicon-ok check-mark"></span><span class="text">AZN</span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="selected active">
+                                                            <a 
+                                                               class="selected active">
+                                                                <span class="glyphicon glyphicon-ok check-mark"></span><span class="text">USD</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a >
+                                                                <span class="glyphicon glyphicon-ok check-mark"></span><span class="text">TRY</span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <span>Günün məzənnəsinə uyğun hesablanır.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-7 col-sm-12 col-xs-12">
+                    <div class="calculator-right">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h3>Necə hesablayım ?</h3>
+                                <p>
+                                    Seçdiyiniz məhsulların toplam məbləğini "Konvertor"
+                                    yazılan hissəyə qeyd edin. Kalkulatorda ödəyəcəyiniz
+                                    toplam məbləğ manat ilə göstəriləcək
+                                </p>
+                                <h5>Qeyd:</h5>
+                                <p>
+                                    Hesablayacağınız məbləğlərdə satıcı firmaların tələb
+                                    etdiyi Türkiyə daxili karqo pulunu nəzərə almağı unutmayın
+                                </p>
+                                <h4>Məlumat</h4>
+                                <p>
+                                    Şirkətimiz Türkiyə və Amerikadan yüklərin daşınması ilə
+                                    məşğul olur. Sizin sifarişləriniz həftədə 2 dəfə
+                                    Türkiyədən, 1 dəfə isə Amerikadan Bakıya çatdırılır.
+                                </p>
+                                <p>
+                                    Limak Sizə bağlamalarınızın çəkisindən asılı olaraq,
+                                    Türkiyədən 2 dollardan, ABŞ-dan isə 3 dollardan başlayan
+                                    qiymətlərlə sərfəli çatdırılma təklif edir.
+                                </p>
+                                <p>
+                                    Sifariş olunan bağlamanın çatdırılma haqqı çəkiyə görə
+                                    hesablanır. Ölçüsü 1 metrdən böyük olan bağlamaların kargo
+                                    pulu isə həcmi çəkiyə görə müəyyən edilir.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts{
+    <script src="~/js/calc.js"></script>
+    <script src="~/js/currencyCalculator.js"></script>
+}

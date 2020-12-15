@@ -1,0 +1,448 @@
+﻿
+@model SettingsViewModel
+@{
+    ViewData["Title"] = "Packages";
+    Layout = "_UserPanelLayout";
+}
+@section Styles{
+    <link rel="stylesheet" href="~/css/user-panel.css" />
+    <link rel="stylesheet" href="~/css/settings.css" />
+}
+<!-- Panel Settigns -->
+<div class="settings order-body col-md-9 col-sm-11 col-xs-11 panel-right" id="panel-settings" data-content="panel-settings">
+    <div class="row">
+        <div class="col-xs-12 courier-log">
+            <div class="block col-xs-12">
+                <ul role="tablist" class="nav nav-tabs web-xs">
+                    <li class="active">
+                        <a href="#tab3" data-toggle="tab"
+                           class="active">Profil məlumatları</a>
+                    </li>
+                    <li class="">
+                        <a href="#tab4" data-toggle="tab" class="">Şifrə</a>
+                    </li>
+                    <li class="">
+                        <a href="#tab5" data-toggle="tab" class="">Ş/V məlumatları</a>
+                    </li>
+                </ul>
+                <ul class="mobile-xs nav nav-tabs">
+                    <li class="active replace">
+                        <a href="#tab3"
+                           data-toggle="tab">
+                            <span class="in_visible">Profil məlumatları</span>
+                            <img src="~/assets/images/user.png" alt="user">
+                        </a>
+                    </li>
+                    <li class="replace">
+                        <a href="#tab4" data-toggle="tab">
+                            <span class="in_visible">Şifrə</span>
+                            <img src="~/assets/images/padlock.png">
+                        </a>
+                    </li>
+                    <li class="replace">
+                        <a href="#tab5" data-toggle="tab">
+                            <span class="in_visible">Ş/V məlumatları</span> <img src="/assets/images/biometric.png"
+                                                                                 alt="biometric">
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div id="tab3" class="tab-pane fade in active ">
+                        <div class="right-content ">
+                            <div class="profil-data form-list">
+                                <form id="profile" class="settings-from">
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <div class="input-group border-radius">
+                                                <label>
+                                                    <input readonly="readonly" type="text" name="name"
+                                                           value="@Model.FirstName" class="form-control inputText"> <span>
+                                                        Ad *
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div class="input-group border-radius">
+                                                <label>
+                                                    <input type="text" readonly="readonly" name="surname"
+                                                           id="surname" value="@Model.LastName" class="form-control inputText">
+                                                    <span>Soyad*</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5 col-xs-12">
+                                            <h5>Çatdırılma ofisi *</h5>
+                                            <div class="invoice-address input-group border-radius">
+
+                                                <div class="dropdown select-tag-container single searchable">
+                                                    <div class="dropdown-toggle">
+                                                        <div class="select-tag-options">
+                                                            <span class="selected-tag" id="delivery-office">
+                                                                @Model.DeliveryOffice
+
+                                                            </span>
+                                                           
+                                                        </div>
+                                                        <div class="indicator-container">
+
+                                                            <i class="open-indicator"></i>
+
+                                                        </div>
+                                                    </div>
+                                                    <ul class="dropdown-menu" id="cargo-address">
+                                                        <li><a>Baki</a></li>
+                                                        <li class=""><a>Gence</a></li>
+                                                        <li class=""><a>Sumqayit</a></li>
+                                                    </ul>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-7 col-xs-12">
+                                            <h5>Doğum tarixi</h5> <div class="invoice-day input-group border-radius">
+                                                <div class="dropdown select-tag-container single searchable">
+                                                    <div class="dropdown-toggle">
+                                                        <div class="select-tag-options">
+                                                            <span class="selected-tag" id="dayOfBirth">
+                                                                @Model.DayOfBirth
+
+                                                            </span> 
+                                                        </div> <div class="indicator-container"> <i class="open-indicator"></i> </div>
+                                                    </div>
+                                                    <ul class="dropdown-menu list-scroll day-scroll-list" id="month-day">
+                                                        @{
+                                                            var dayCount = 31;
+                                                            if (Model.MonthOfBirth == "Fevral")
+                                                            {
+                                                                if (((Convert.ToInt32(Model.YearOfBirth) % 4 == 0) && (Convert.ToInt32(Model.YearOfBirth) % 100 != 0)) || (Convert.ToInt32(Model.YearOfBirth) % 400 == 0))
+                                                                {
+                                                                    dayCount = 29;
+                                                                }
+                                                                else
+                                                                {
+                                                                    dayCount = 28;
+                                                                }
+                                                            }
+                                                            else if (Model.MonthOfBirth == "Aprel" || Model.MonthOfBirth == "İyun" || Model.MonthOfBirth == "Sentyabr" || Model.MonthOfBirth == "Noyabr")
+                                                            {
+                                                                dayCount = 30;
+                                                            }
+                                                            else
+                                                            {
+                                                                dayCount = 31;
+                                                            }
+                                                            for (int i = 1; i <= dayCount; i++)
+                                                            {
+                                                                <li>
+                                                                    <a data-value="@i">
+                                                                        <span class="text">@i</span>
+                                                                    </a>
+                                                                </li>
+                                                            }
+                                                        }
+
+                                                    </ul>
+                                                </div>
+                                            </div> <div class="invoice-month input-group border-radius">
+                                                <div class="dropdown select-tag-container single searchable">
+                                                    <div class="dropdown-toggle">
+                                                        <div class="select-tag-options">
+                                                            <span class="selected-tag" id="month-name">
+                                                                @Model.MonthOfBirth
+
+                                                            </span> 
+                                                        </div> <div class="indicator-container"> <i class="open-indicator"></i> </div>
+                                                    </div>
+                                                    <ul class="dropdown-menu inner list-scroll month-scroll-list">
+                                                        <li>
+                                                            <a data-value="Yanvar">
+                                                                <span class="text">Yanvar</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a data-value="Fevral">
+                                                                <span class="text">Fevral</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a data-value="Mart">
+                                                                <span class="text">Mart</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a data-value="Aprel">
+                                                                <span class="text">Aprel</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a data-value="May">
+                                                                <span class="text">May</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a data-value="İyun">
+                                                                <span class="text">İyun</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a data-value="İyul">
+                                                                <span class="text">İyul</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a data-value="Avqust">
+                                                                <span class="text">Avqust</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a data-value="Sentyabr">
+                                                                <span class="text">Sentyabr</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a data-value="Oktyabr">
+                                                                <span class="text">Oktyabr</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a data-value="Noyabr">
+                                                                <span class="text">Noyabr</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a data-value="Dekabr">
+                                                                <span class="text">Dekabr</span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div> <div class="invoice-year input-group border-radius">
+                                                <div class="dropdown select-tag-container single searchable">
+                                                    <div class="dropdown-toggle">
+                                                        <div class="select-tag-options">
+                                                            <span class="selected-tag" id="year">
+                                                                @Model.YearOfBirth
+
+                                                            </span> 
+                                                        </div> <div class="indicator-container"> <i class="open-indicator"></i></div>
+                                                    </div>
+                                                    <ul class="dropdown-menu inner list-scroll year-scroll-list">
+                                                        @for (int i = (DateTime.Now.Year) - 18; i >= (DateTime.Now.Year) - 120; i--)
+                                                        {
+                                                            <li>
+                                                                <a data-value="@i">
+                                                                    <span class="text">@i</span>
+                                                                </a>
+                                                            </li>
+                                                        }
+                                                    </ul>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div class="input-group border-radius">
+                                                <label>
+                                                    <input type="text"
+                                                           readonly="readonly" name="email" id="mail" value="@Model.Email"
+                                                           class="form-control inputText"> <span>E-mail*</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div class="input-group border-radius">
+                                                <label>
+                                                    <input type="text"
+                                                           name="phone" maxlength="14" id="phone" value="@Model.PhoneNumber"
+                                                           class="form-control inputText"> <span>Telefon*</span>
+
+                                                </label>
+                                                <span id="number-validation" style="color: red;">Xana Boş ola biməz!</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 button-part">
+                                            <button type="submit"
+                                                    class="btn-effect " id="profile-submit-btn">
+                                                Yadda  saxla
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tab4" class="tab-pane in">
+                        <div class="right-content ">
+                            <div class="password-part form-list ">
+                                <form id="update-password">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <h4>Cari şifrə</h4>
+                                            <div class="row">
+                                                <div class="col-md-5 col-sm-5 col-xs-12">
+                                                    <div class="input-group border-radius">
+                                                        <label>
+                                                            <input type="password" name="currentPassword" id="nowpass"
+                                                                   placeholder=" " class="form-control">
+                                                        </label>
+                                                        <span class="password-data-validation" style="color: red;">Cari şifrə daxil edilməyib.</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12">
+                                            <div class="new-password">
+                                                <h4>Yeni şifrə təyin et</h4>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-5 col-sm-5 col-xs-12">
+                                                    <div class="row">
+                                                        <div class="col-xs-12">
+                                                            <div class="input-group border-radius">
+                                                                <label>
+                                                                    <input type="password" name="password" id="passii"
+                                                                           placeholder=" " class="form-control inputText">
+                                                                    <span>Şifrə</span>
+                                                                </label>
+                                                                <span class="password-data-validation" style="color: red;">Xana Boş ola biməz!</span>
+                                                                <span class="password-data-validation password-requirement-error" style="color: red;">Minimum uzunluq 6 olmalidir</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12">
+                                                            <div class="input-group border-radius">
+                                                                <label>
+                                                                    <input type="password" name="cpassword" id="repeat-pass"
+                                                                           placeholder=" " class="form-control inputText">
+                                                                    <span>Şifrənin təkrarı</span>
+                                                                </label>
+                                                                <span class="password-data-validation" style="color: red;">Təkrar şifrə daxil edilməyib.</span>
+                                                                <span class="password-data-validation not-same-error" style="color: red;">Təkrar şifrə uyğun deyil</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="ps-right col-md-7 col-sm-7 col-xs-12">
+                                                    <div class="password-right">
+                                                        <h4>Yeni şifrə əlavə edərkən diqqət edin!</h4>
+
+                                                        <ul>
+                                                            <li>Şifrənizdə böyük hərf istifadə edin</li>
+                                                            <li>Şifrənizdə rəqəm istifadə edin</li>
+                                                            <li>Şifrənizdə simvollardan istifadə edin</li>
+                                                            <li>Şifrənizdə simvollardan minimum uzunlugu 6</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 button-part">
+                                            <button type="submit" id="update-password-submit-btn"
+                                                    class="btn-effect">
+                                                Yadda saxla
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tab5" class="tab-pane in">
+                        <div class="right-content ">
+                            <div class="id-data form-list">
+                                <form id="passport_data" class="settings-from">
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <div class="input-group border-radius">
+                                                <label>
+                                                    <input type="text"
+                                                           name="serialNumber" value="@Model.SeriaNumber"
+                                                           class="form-control inputText"> <span>Ş/V seriya nömrəsi * </span>
+                                                </label>
+                                                <span class="password-data-validation" style="color: red;">Xana Boş ola biməz!</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div class="input-group border-radius">
+                                                <label>
+                                                    <input type="text"
+                                                           readonly="readonly" name="pin" value="@Model.FinCode"
+                                                           class="form-control inputText"> <span>FİN* </span>
+                                                </label>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8">
+                                            <div class="input-group border-radius">
+                                                <label>
+                                                    <input type="text"
+                                                           name="nationality" value="@Model.CitizenShip"
+                                                           class="form-control inputText"> <span>Vətəndaşlıği*</span>
+                                                </label>
+                                                <span class="password-data-validation" style="color: red;">Xana Boş ola biməz!</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <div class="invoice-address input-group border-radius">
+
+                                                <div class="dropdown select-tag-container single searchable">
+                                                    <div class="dropdown-toggle">
+                                                        <div class="select-tag-options">
+                                                            <span class="selected-tag" id="id-info-gender">
+                                                                @Model.Gender
+
+                                                            </span>
+                                                           
+                                                        </div>
+                                                        <div class="indicator-container">
+
+                                                            <i class="open-indicator"></i>
+
+                                                        </div>
+                                                    </div>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a>Kisi</a></li>
+                                                        <li class=""><a>Qadin</a></li>
+
+                                                    </ul>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12">
+                                            <div class="input-group border-radius">
+                                                <label>
+                                                    <input type="text" name="address" value="@Model.IdAddress" class="form-control inputText">
+                                                    <span>Ş/V-dəki ünvan*</span>
+                                                </label>
+                                                <span class="password-data-validation" style="color: red;">Xana Boş ola biməz!</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 button-part">
+                                            <button type="submit"
+                                                    class="btn-effect" id="id-info-submit-btn">
+                                                Yadda saxla
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/settingsAjaxPost.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/4.0.9/jquery.inputmask.bundle.min.js"></script>
+    <script src="~/js/inputmask.js"></script>
+
+    <script src="~/js/settings.js"></script>
+
+
+}

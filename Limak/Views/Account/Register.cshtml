@@ -1,0 +1,548 @@
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+@section Styles{
+    <link rel="stylesheet" href="~/css/declare.css" />
+    <link rel="stylesheet" href="~/css/user-panel.css" />
+    <link rel="stylesheet" href="~/css/register.css" />
+}
+<section class="sign-in invoice content">
+    <div class="container">
+        <div class="row">
+            <div class="invoice-head col-xs-12">
+                <div class="col-md-4 col-sm-5 col-xs-7">
+                    <h4>İSTİFADƏÇİ <b>QEYDİYYATI</b></h4>
+                </div>
+                <div class="col-md-8 col-sm-7 col-xs-5">
+                    <ol class="breadcrumb web">
+                        <li><a href="">Ana səhifə </a></li>
+                        <li class="active">QEYDİYYAT</li>
+                    </ol>
+                    <ol class="breadcrumb mobile">
+                        <li><a href="">... </a></li>
+                        <li class="active">QEYDİYYAT</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="invoice-body col-xs-12">
+                <div class="row relative">
+                    <div class="col-md-9 col-sm-12 col-xs-12">
+                        <div class="invoice-left-side block">
+                            <form method="POST" action="Register">
+
+
+                                @*<div id="allValMess" asp-validation-summary="All" class="text-danger"></div>*@
+                               
+                                <div class="left-content">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <h4>Profil məlumatları</h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <div class="input-group border-radius">
+                                                <label>
+                                                    <input asp-for="FirstName"
+                                                           value=""
+                                                           type="text"
+                                                           class="form-control inputText"
+                                                           placeholder=" " />
+                                                    <span>Ad * </span>
+                                                </label>
+                                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div class="input-group border-radius">
+                                                <label>
+                                                    <input asp-for="LastName"
+                                                           value=""
+                                                           type="text"
+                                                           class="form-control inputText"
+                                                           placeholder=" " />
+
+                                                    <span>Soyad *</span>
+                                                </label>
+                                                <span asp-validation-for="LastName" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <div class="input-group border-radius">
+                                                <label>
+                                                    <input asp-for="Email"
+                                                           value=""
+                                                           type="text"
+                                                           class="form-control inputText"
+                                                           placeholder=" " />
+                                                    <span>E-mail *</span>
+                                                </label>
+                                                <span asp-validation-for="Email" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div class="input-group border-radius tel-edit">
+                                                <label>
+                                                    <input asp-for="PhoneNumber"
+                                                           value=""
+                                                           type="text"
+                                                           class="form-control inputText"
+                                                           placeholder=" "
+                                                           id="phoneInput" />
+                                                    <span>Telefon *</span>
+                                                    <p>+994</p>
+                                                </label>
+                                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <div class="input-group border-radius">
+                                                <label>
+                                                    <input asp-for="Password"
+                                                           type="password"
+                                                           class="form-control inputText"
+                                                           placeholder=" " />
+                                                    <span>Şifrə *</span>
+                                                </label>
+                                                <span asp-validation-for="Password" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div class="input-group border-radius">
+                                                <label>
+                                                    <input asp-for="ConfirmPassword"
+                                                           type="password"
+                                                           class="form-control inputText"
+                                                           placeholder=" " />
+                                                    <span>Şifrənin təkrarı *</span>
+                                                </label>
+                                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <h4>Şəxsiyyət vəsiqəsi məlumatları</h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-6 display-flex">
+                                            <div class="gender input-group border-radius">
+                                                <div class="dropdown bootstrap-select form-control   ">
+                                                    <button type="button"
+                                                            class="btn dropdown-toggle bs-placeholder btn-default"
+                                                            data-toggle="dropdown"
+                                                           >
+                                                        <div class="filter-option">
+                                                            <div class="filter-option-inner">
+                                                                <div class="filter-option-inner-inner">
+                                                                    AZE
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <span class="bs-caret">
+                                                            <span class="caret"></span>
+                                                        </span>
+                                                    </button>
+                                                    <div class="dropdown-menu open">
+                                                        <div class="inner open"
+                                                             >
+                                                            <ul class="dropdown-menu inner idType-select">
+                                                                <li>
+                                                                    <a data-value="AZE">
+                                                                        <span class="text">AZE</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a data-value="AA">
+                                                                        <span class="text">AA</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <input class="d-none-witdh-height select-value-input" asp-for="IdType" value="AZE" />
+                                                <span asp-validation-for="IdType" class="text-danger"></span>
+                                            </div>
+                                            <div class="input-group border-radius">
+                                                <label>
+                                                   
+                                                    <input asp-for="SeriaNumber"
+                                                           value="" pattern="/^-?\d+\.?\d*$/"
+                                                           type="number"
+                                                           class="form-control inputText"
+                                                           placeholder=" " />
+                                                    <span>Seriya nömrəsi *</span>
+                                                </label>
+                                                <span asp-validation-for="SeriaNumber" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div class="input-group border-radius">
+                                                <label>
+                                                    <input asp-for="CitizenShip"
+                                                           value=""
+                                                           type="text"
+                                                           class="form-control inputText"
+                                                           placeholder=" " />
+                                                    <span>Vətəndaşlıq *</span>
+                                                </label>
+                                                <span asp-validation-for="CitizenShip" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="invoice-date">
+                                                <h5>Doğum tarixi *</h5>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12">
+                                            <div class="invoice-day input-group border-radius">
+                                                <div class="dropdown bootstrap-select form-control   ">
+
+                                                    <button type="button"
+                                                            class="btn dropdown-toggle bs-placeholder btn-default"
+                                                            data-toggle="dropdown"
+                                                            title="Gün">
+                                                        <div class="filter-option">
+                                                            <div class="filter-option-inner">
+                                                                <div class="filter-option-inner-inner" id="dayOfBirth">
+                                                                    Gün
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <span class="bs-caret">
+                                                            <span class="caret"></span>
+                                                        </span>
+                                                    </button>
+                                                    <div class="dropdown-menu open">
+                                                        <div class="inner open"
+                                                             >
+                                                            <ul class="dropdown-menu inner list-scroll day-scroll-list">
+                                                                @for (int i = 1; i <= 31; i++)
+                                                                {
+                                                                    <li>
+                                                                        <a data-value="@i">
+                                                                            <span class="text">@i</span>
+                                                                        </a>
+                                                                    </li>
+                                                                }
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <input class="d-none-witdh-height select-value-input" asp-for="DayOfBirth" />
+                                                <span asp-validation-for="DayOfBirth" class="text-danger"></span>
+                                            </div>
+
+                                            <div class="invoice-month input-group border-radius">
+                                                <div class="dropdown bootstrap-select form-control ">
+
+                                                    <button type="button"
+                                                            class="btn dropdown-toggle bs-placeholder btn-default"
+                                                            data-toggle="dropdown"
+                                                            title="Ay">
+                                                        <div class="filter-option">
+                                                            <div class="filter-option-inner">
+                                                                <div class="filter-option-inner-inner" id="month-name">
+                                                                    Ay
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <span class="bs-caret">
+                                                            <span class="caret"></span>
+                                                        </span>
+                                                    </button>
+                                                    <div class="dropdown-menu open">
+                                                        <div class="inner open" >
+                                                            <ul class="dropdown-menu inner list-scroll month-scroll-list">
+                                                                <li>
+                                                                    <a data-value="Yanvar">
+                                                                         <span class="text">Yanvar</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a data-value="Fevral">
+                                                                         <span class="text">Fevral</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a data-value="Mart">
+                                                                         <span class="text">Mart</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a data-value="Aprel">
+                                                                         <span class="text">Aprel</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a data-value="May">
+                                                                         <span class="text">May</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a data-value="İyun">
+                                                                         <span class="text">İyun</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a data-value="İyul">
+                                                                         <span class="text">İyul</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a data-value="Avqust">
+                                                                         <span class="text">Avqust</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a data-value="Sentyabr">
+                                                                         <span class="text">Sentyabr</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a data-value="Oktyabr">
+                                                                         <span class="text">Oktyabr</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a data-value="Noyabr">
+                                                                         <span class="text">Noyabr</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a data-value="Dekabr">
+                                                                         <span class="text">Dekabr</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <input class="d-none-witdh-height select-value-input" asp-for="MonthOfBirth" />
+                                                    <span asp-validation-for="MonthOfBirth" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                            <div class="invoice-year input-group border-radius">
+                                                <div class="dropdown bootstrap-select form-control   ">
+                                                    <button type="button"
+                                                            class="btn dropdown-toggle bs-placeholder btn-default"
+                                                            data-toggle="dropdown"
+                                                            title="İl">
+                                                        <div class="filter-option">
+                                                            <div class="filter-option-inner">
+                                                                <div class="filter-option-inner-inner" id="year">
+                                                                    İl
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <span class="bs-caret">
+                                                            <span class="caret"></span>
+                                                        </span>
+                                                    </button>
+                                                    <div class="dropdown-menu open">
+                                                        <div class="inner open"
+                                                             >
+                                                            <ul class="dropdown-menu inner list-scroll year-scroll-list">
+                                                                @for (int i = (DateTime.Now.Year) - 18; i >= (DateTime.Now.Year) - 120; i--)
+                                                                {
+                                                                    <li>
+                                                                        <a data-value="@i">
+                                                                            <span class="text">@i</span>
+                                                                        </a>
+                                                                    </li>
+                                                                }
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <input class="d-none-witdh-height select-value-input" asp-for="YearOfBirth" />
+                                                <span asp-validation-for="YearOfBirth" class="text-danger"></span>
+                                            </div>
+                                            <div class="gender input-group border-radius">
+                                                <div class="dropdown bootstrap-select form-control   ">
+                                                    <button type="button"
+                                                            class="btn dropdown-toggle bs-placeholder btn-default"
+                                                            data-toggle="dropdown"
+                                                            title="Cinsi *">
+                                                        <div class="filter-option">
+                                                            <div class="filter-option-inner">
+                                                                <div class="filter-option-inner-inner">
+                                                                    Cinsi *
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <span class="bs-caret">
+                                                            <span class="caret"></span>
+                                                        </span>
+                                                    </button>
+                                                    <div class="dropdown-menu open">
+                                                        <div class="inner open"
+                                                             >
+                                                            <ul class="dropdown-menu inner">
+                                                                <li>
+                                                                    <a data-value="Qadin">
+                                                                         <span class="text">Qadın</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a data-value="Kisi">
+                                                                         <span class="text">Kişi</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <input class="d-none-witdh-height select-value-input" asp-for="Gender" />
+                                                <span asp-validation-for="Gender" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <div class="input-group border-radius">
+                                                <label>
+                                                    <input asp-for="FinCode"
+                                                           value=""
+                                                           type="text"
+                                                           class="form-control inputText"
+                                                           placeholder=" " />
+                                                    <span>FİN *</span>
+                                                </label>
+                                                <span asp-validation-for="FinCode" class="text-danger"></span>
+                                                <span class="fin">
+                                                    FİN kod nədir
+                                                    <button type="button"
+                                                            data-toggle="modal"
+                                                            data-target=".bs-example-modal-sm-1">
+                                                        <i class="fa fa-question-circle"></i>
+                                                    </button>
+                                                </span>
+                                                <div class="modal fade bs-example-modal-sm-1"
+                                                     >
+                                                    <div class="modal-dialog modal-sm">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button"
+                                                                        class="close"
+                                                                        data-dismiss="modal">
+                                                                    <span>×</span>
+                                                                </button>
+                                                                <h4 class="modal-title"
+                                                                    id="gridSystemModalLabel2">
+                                                                    Seriya nömrəsi
+                                                                </h4>
+                                                            </div>
+                                                            <img src="~/assets/images/fin-big.png"
+                                                                 alt="fin_big"
+                                                                 class="img-responsive center-block" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div class="input-group border-radius">
+                                                <label>
+                                                    <input asp-for="IdAddress"
+                                                           value=""
+                                                           type="text"
+                                                           class="form-control inputText"
+                                                           placeholder=" " />
+                                                    <span>Ş/V-dəki ünvan *</span>
+                                                </label>
+                                                <span asp-validation-for="IdAddress" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="btn-part">
+                                                <label class="check-button">
+                                                    <span class="check-btn-text">
+                                                        <a 
+                                                           data-toggle="modal"
+                                                           data-target=".privacy-modal">
+                                                            İstifadəçi qaydaları ilə razıyam
+                                                        </a>
+                                                    </span>
+                                                    <input asp-for="isAgree" type="checkbox" />
+                                                    <span class="checkmark"></span>
+
+                                                </label>
+                                                <span id="checkBoxValMes" asp-validation-for="isAgree" class="display-block text-danger"></span>
+                                                <button type="submit" class="btn-effect">
+                                                    <span>TƏSDİQ ET</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12 web">
+                        <div class="invoice-right block">
+                            <h3 class="text-center">Diqqət!</h3>
+                            <p>
+                                Şəxsiyyət vəsiqənizin FİN kodu vəsiqənin aşağı sağ küncündə
+                                sonuncu rəqəmdən əvvəlki 7 işarədir. Daha aydın bilməniz
+                                üçün nümunə şəkilə diqqət edin!
+                            </p>
+                            <img src="~/assets/images/fin-big.png"
+                                 alt="fin_image"
+                                 class="img-responsive center-block" />
+                            <div class="focus">
+                                <button type="button"
+                                        class="btn"
+                                        
+                                        data-toggle="modal"
+                                        data-target=".bs-example-modal-sm-2">
+                                    Şəkili böyüt
+                                </button>
+                            </div>
+                            <div class="modal fade bs-example-modal-sm-2"
+                                 >
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button"
+                                                    class="close"
+                                                    data-dismiss="modal">
+                                                <span>×</span>
+                                            </button>
+                                            <h4 class="modal-title" id="gridSystemModalLabel1">
+                                                Seriya nömrəsi
+                                            </h4>
+                                        </div>
+                                        <img src="~/assets/images/fin-big.png"
+                                             alt="fin_big"
+                                             class="img-responsive center-block" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/4.0.9/jquery.inputmask.bundle.min.js"></script>
+    <script src="~/js/inputmask.js"></script>
+    <script src="~/js/phone-inputmask.js"></script>
+    <script src="~/js/register.js"></script>
+}

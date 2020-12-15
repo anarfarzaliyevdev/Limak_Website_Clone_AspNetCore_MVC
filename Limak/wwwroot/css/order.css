@@ -1,0 +1,40 @@
+.cargo-amount{
+    display: none;
+}
+.internal-cargo{
+    display: none ;
+}
+
+#cargo-address{
+    display: none;
+}
+.pull-right button{
+    margin-bottom: 5px; 
+    width: 150px;
+}
+.hide{
+    display: none !important;
+}
+.btn-add{
+    display: none;
+}
+.btn-remove{
+    display: inline-block;
+}
+.left-content:last-child .btn-add{
+    display: inline-block;
+}
+.left-content:first-child .btn-remove{
+    display: none;
+}
+.active-dropdown{
+    display: block;
+}
+.alertborder {
+    border: 2px solid red;
+}
+
+.alertptag {
+    color: red;
+    display: none;
+}
