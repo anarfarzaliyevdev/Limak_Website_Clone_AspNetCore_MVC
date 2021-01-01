@@ -1,1 +1,1 @@
-# Limak clone web site with Asp Net Core MVC
+# Limak clone website with Asp Net Core MVC
